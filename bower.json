@@ -1,0 +1,18 @@
+{
+	"name": "eg.visible",
+	"version": "2.0.0-rc.1",
+	"license": "MIT",
+	"keywords": [
+		"egjs",
+		"visible",
+		"plugin",
+		"javaScript",
+		"jQuery"
+	],
+	"ignore": [
+		"**/.*",
+		"bower_components",
+		"node_modules"
+	],
+	"main": "dist/eg.visible.js"
+}

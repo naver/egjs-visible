@@ -1,0 +1,53 @@
+{
+	"tags": {
+		"allowUnknownTags" : true,
+		"dictionaries": ["jsdoc","closure"]
+	},
+	"source": {
+		"include": ["src"],
+		"includePattern": ".+\\.js(doc|x)?$",
+		"excludePattern": "(^|\\/|\\\\)_"
+	},
+	"opts": {
+		"template": "node_modules/egjs-jsdoc-template",
+		"destination": "./doc/"
+	},
+	"plugins": [
+		"plugins/markdown",
+		"node_modules/egjs-jsdoc-template/jsdoc-plugin/ko", 
+		"node_modules/egjs-jsdoc-template/jsdoc-plugin/group",
+		"node_modules/egjs-jsdoc-template/jsdoc-plugin/codepen",
+		"node_modules/egjs-jsdoc-template/jsdoc-plugin/support"
+	],
+	"templates": {
+		"cleverLinks": true,
+		"monospaceLinks": true,
+		"default": {
+			"outputSourceFiles" : true
+		},
+		"applicationName": "egjs",
+		"disqus": "egjs",
+		"googleAnalytics": "",
+		"openGraph": {
+			"title": "",
+			"type": "website",
+			"image": "",
+			"site_name": "",
+			"url": ""
+		},
+		"meta": {
+			"title": "egjs::eg.Visible - API",
+			"description": "&#34;A module that checks if an element is visible in the base element or viewport.&#34;",
+			"keyword": "jQuery, UI Component, egjs, visible"
+		},
+		"linenums": true,
+		"link": {
+			"canonical": "http://naver.github.io/egjs/latest/doc/"
+		}
+	},
+	"markdown": {
+		"parser": "gfm",
+		"hardwrap": true,
+		"tags": ["examples", "ko"]
+	}
+}

@@ -1,0 +1,12 @@
+bower_components/
+node_modules/
+assets/
+config/
+report/
+tc/
+test/
+jsdoc.json
+*.js
+*.txt
+*.md
+*.log
