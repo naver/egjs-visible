@@ -24,7 +24,7 @@ export class Visible extends Component {
 			targetClass: "check_visible",
 			expandSize: 0
 		};
-		$.extend(this.options, options);
+		Object.assign(this.options, options);
 
 		this._wrapper = $(element)[0] || document;
 
@@ -133,15 +133,18 @@ export class Visible extends Component {
 		var expandSize = parseInt(this.options.expandSize, 10);
 		var visibles = [];
 		var invisibles = [];
-		var area = this._getAreaRect();
+		var area;
+		var rect;
 
 		// Error Fix: Cannot set property top of #<ClientRect> which has only a getter
-		area = $.extend({}, area);
+		rect = this._getAreaRect();
+		area = {
+			top: rect.top - expandSize,
+			left: rect.left - expandSize,
+			bottom: rect.bottom + expandSize,
+			right: rect.right + expandSize
+		};
 
-		area.top -= expandSize;
-		area.left -= expandSize;
-		area.bottom += expandSize;
-		area.right += expandSize;
 		for (var i = this._targets.length - 1, target, targetArea, after, before;
 			 target = this._targets[i] ; i--) {
 			targetArea = target.getBoundingClientRect();
