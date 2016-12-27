@@ -38,8 +38,8 @@ export class Visible extends Component {
 		this._targets = [];
 		this._timer = null;
 		this._supportElementsByClassName = (function() {
-			var dummy = document.createElement("div");
-			var dummies;
+			let dummy = document.createElement("div");
+			let dummies;
 			if (!dummy.getElementsByClassName) {
 				return false;
 			}
@@ -130,11 +130,17 @@ export class Visible extends Component {
 	}
 
 	_check(containment) {
-		var expandSize = parseInt(this.options.expandSize, 10);
-		var visibles = [];
-		var invisibles = [];
-		var area;
-		var rect;
+		let expandSize = parseInt(this.options.expandSize, 10);
+		let visibles = [];
+		let invisibles = [];
+
+		let i;
+		let area;
+		let rect;
+		let target;
+		let targetArea;
+		let before;
+		let after;
 
 		// Error Fix: Cannot set property top of #<ClientRect> which has only a getter
 		rect = this._getAreaRect();
@@ -145,7 +151,7 @@ export class Visible extends Component {
 			right: rect.right + expandSize
 		};
 
-		for (var i = this._targets.length - 1, target, targetArea, after, before;
+		for (i = this._targets.length - 1, target, targetArea, after, before;
 			 target = this._targets[i] ; i--) {
 			targetArea = target.getBoundingClientRect();
 			if (targetArea.width === 0 && targetArea.height === 0) {
