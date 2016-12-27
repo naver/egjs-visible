@@ -37,7 +37,7 @@ export class Visible extends Component {
 
 		this._targets = [];
 		this._timer = null;
-		this._supportElementsByClassName = (function() {
+		this._supportElementsByClassName = (() => {
 			let dummy = document.createElement("div");
 			let dummies;
 			if (!dummy.getElementsByClassName) {
@@ -55,11 +55,9 @@ export class Visible extends Component {
 		if (this._supportElementsByClassName) {
 			this._targets = this._wrapper
 				.getElementsByClassName(this.options.targetClass);
-			this.refresh = function() {
-				return this;
-			};
+			this.refresh = () => this;
 		} else {
-			this.refresh = function() {
+			this.refresh = () => {
 				this._targets = $(this._wrapper)
 					.find("." + this.options.targetClass)
 					.get();
@@ -87,10 +85,10 @@ export class Visible extends Component {
 		if (delay < 0) {
 			this._check(containment);
 		} else {
-			this._timer = setTimeout($.proxy(function() {
+			this._timer = setTimeout(() => {
 				this._check(containment);
 				this._timer = null;
-			}, this), delay);
+			}, delay);
 		}
 		return this;
 	}
@@ -113,11 +111,9 @@ export class Visible extends Component {
 
 	_reviseElements(target, i) {
 		if (this._supportElementsByClassName) {
-			this._reviseElements = function() {
-				return true;
-			};
+			this._reviseElements = () => true;
 		} else {
-			this._reviseElements = function(target, i) {
+			this._reviseElements = (target, i) => {
 				if (!$(target).hasClass(this.options.targetClass)) {
 					target.__VISIBLE__ = null;
 					this._targets.splice(i, 1);
