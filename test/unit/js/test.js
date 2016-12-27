@@ -5,7 +5,7 @@
 module("Visible document Test", {
 	setup : function() {
 		// make list
-		var html =[];
+		var html =[];debugger;
 		for(var i=0; i<100; i++) {
 			html.push("<li class='list check_document_visible'>#");
 			html.push(i+1);
@@ -293,4 +293,3 @@ test("scroll position change", function(assert) {
 	this.$wrapper.scrollTop(110);
 	this.inst.check(true);
 });
-

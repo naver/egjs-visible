@@ -24,7 +24,7 @@ export class Visible extends Component {
 			targetClass: "check_visible",
 			expandSize: 0
 		};
-		$.extend(this.options, options);
+		Object.assign(this.options, options);
 
 		this._wrapper = $(element)[0] || document;
 
@@ -37,9 +37,9 @@ export class Visible extends Component {
 
 		this._targets = [];
 		this._timer = null;
-		this._supportElementsByClassName = (function() {
-			var dummy = document.createElement("div");
-			var dummies;
+		this._supportElementsByClassName = (() => {
+			let dummy = document.createElement("div");
+			let dummies;
 			if (!dummy.getElementsByClassName) {
 				return false;
 			}
@@ -55,11 +55,9 @@ export class Visible extends Component {
 		if (this._supportElementsByClassName) {
 			this._targets = this._wrapper
 				.getElementsByClassName(this.options.targetClass);
-			this.refresh = function() {
-				return this;
-			};
+			this.refresh = () => this;
 		} else {
-			this.refresh = function() {
+			this.refresh = () => {
 				this._targets = $(this._wrapper)
 					.find("." + this.options.targetClass)
 					.get();
@@ -87,10 +85,10 @@ export class Visible extends Component {
 		if (delay < 0) {
 			this._check(containment);
 		} else {
-			this._timer = setTimeout($.proxy(function() {
+			this._timer = setTimeout(() => {
 				this._check(containment);
 				this._timer = null;
-			}, this), delay);
+			}, delay);
 		}
 		return this;
 	}
@@ -113,11 +111,9 @@ export class Visible extends Component {
 
 	_reviseElements(target, i) {
 		if (this._supportElementsByClassName) {
-			this._reviseElements = function() {
-				return true;
-			};
+			this._reviseElements = () => true;
 		} else {
-			this._reviseElements = function(target, i) {
+			this._reviseElements = (target, i) => {
 				if (!$(target).hasClass(this.options.targetClass)) {
 					target.__VISIBLE__ = null;
 					this._targets.splice(i, 1);
@@ -130,19 +126,28 @@ export class Visible extends Component {
 	}
 
 	_check(containment) {
-		var expandSize = parseInt(this.options.expandSize, 10);
-		var visibles = [];
-		var invisibles = [];
-		var area = this._getAreaRect();
+		let expandSize = parseInt(this.options.expandSize, 10);
+		let visibles = [];
+		let invisibles = [];
+
+		let i;
+		let area;
+		let rect;
+		let target;
+		let targetArea;
+		let before;
+		let after;
 
 		// Error Fix: Cannot set property top of #<ClientRect> which has only a getter
-		area = $.extend({}, area);
+		rect = this._getAreaRect();
+		area = {
+			top: rect.top - expandSize,
+			left: rect.left - expandSize,
+			bottom: rect.bottom + expandSize,
+			right: rect.right + expandSize
+		};
 
-		area.top -= expandSize;
-		area.left -= expandSize;
-		area.bottom += expandSize;
-		area.right += expandSize;
-		for (var i = this._targets.length - 1, target, targetArea, after, before;
+		for (i = this._targets.length - 1, target, targetArea, after, before;
 			 target = this._targets[i] ; i--) {
 			targetArea = target.getBoundingClientRect();
 			if (targetArea.width === 0 && targetArea.height === 0) {
