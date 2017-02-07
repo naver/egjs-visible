@@ -2,4 +2,6 @@
  * Copyright (c) NAVER Corp.
  */
 
-console.log("Hello eg.Visible!!!", eg.Visible);
+var visible = new eg.Visible();
+console.log("Hello eg.Visible!!!", visible);
+

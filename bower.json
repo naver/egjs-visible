@@ -1,5 +1,5 @@
 {
-	"name": "eg.visible",
+	"name": "egjs-visible",
 	"version": "2.0.0-rc.1",
 	"license": "MIT",
 	"keywords": [
@@ -14,5 +14,5 @@
 		"bower_components",
 		"node_modules"
 	],
-	"main": "dist/eg.visible.js"
+	"main": "dist/visible.js"
 }

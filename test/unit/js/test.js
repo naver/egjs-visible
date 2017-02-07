@@ -5,7 +5,7 @@
 module("Visible document Test", {
 	setup : function() {
 		// make list
-		var html =[];debugger;
+		var html =[];
 		for(var i=0; i<100; i++) {
 			html.push("<li class='list check_document_visible'>#");
 			html.push(i+1);
