@@ -2,35 +2,43 @@ var webpack = require("webpack");
 var path = require("path");
 
 module.exports = {
+	target: "web",
 	entry: {
-		"eg.visible": "./src/index.js",
-		"eg.visible.min": "./src/index.js"
+		"visible": "./src/index.js",
+		"visible.min": "./src/index.js"
 	},
 	output: {
 		path: path.resolve(__dirname, "dist"),
 		filename: "[name].js",
-		library: "eg",
+		library: ["eg", "Visible"],
 		libraryTarget: "umd"
+	},
+	externals: {
+		"@egjs/component" : {
+			commonjs: "@egjs/component",
+			commonjs2: "@egjs/component",
+			amd: "@egjs/component",
+			root: ["eg", "Component"]
+		}
 	},
 	devServer: {
 		publicPath: "/dist/"
 	},
 	devtool: "source-map",
 	module: {
-		loaders: [
-		  {
+		rules: [{
 			test: /\.js$/,
+			exclude: /node_modules/,
 			loader: "babel-loader",
-			query: {
-			  presets: ["es2015"]
+			options: {
+		  		presets: ["es2015"]
 			}
-		  }
-		]
+		}]
 	},
 	plugins: [
 		new webpack.optimize.UglifyJsPlugin({
-		  include: /\.min\.js$/,
-		  minimize: true
+			include: /\.min\.js$/,
+			minimize: true
 		})
 	]
 };

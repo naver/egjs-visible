@@ -36,7 +36,7 @@
 			"url": ""
 		},
 		"meta": {
-			"title": "egjs::eg.Visible - API",
+			"title": "egjs::visible - API",
 			"description": "&#34;A module that checks if an element is visible in the base element or viewport.&#34;",
 			"keyword": "jQuery, UI Component, egjs, visible"
 		},

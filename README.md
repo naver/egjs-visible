@@ -1,4 +1,4 @@
-# eg.Visible
+# egjs-visible
 
 ## requirement
 
@@ -36,14 +36,15 @@ checkout http://localhost:8080/demo/
 ## directories
 
 ```
-eg.visible
+egjs-visible
   ├─ dist/
-  │   └─ eg.visible.js
-  │   └─ eg.visible.min.js
-  │   └─ eg.visible.js.map
-  │   └─ eg.visible.min.js.map
+  │   └─ visible.js
+  │   └─ visible.min.js
+  │   └─ visible.js.map
+  │   └─ visible.min.js.map
   ├─ src/
   │   └─ index.js
+  │   └─ visible.js
   ├─ demo/
   │   ├─ js
   │   │   └─ demo.js
