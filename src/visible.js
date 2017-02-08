@@ -25,8 +25,7 @@ export class Visible extends Component {
 			expandSize: 0
 		};
 		Object.assign(this.options, options);
-
-		this._wrapper = $(element)[0] || document;
+		this._wrapper = element || document;
 
 		// this._wrapper is Element, or may be Window
 		if (this._wrapper.nodeType && this._wrapper.nodeType === 1) {
@@ -51,6 +50,13 @@ export class Visible extends Component {
 		this.refresh();
 	}
 
+	_hasClass(el, className) {
+		if (el.classList)
+			return el.classList.contains(className);
+		else
+			return new RegExp('(^| )' + className + '( |$)', 'gi').test(el.className);
+	}
+
 	refresh() {
 		if (this._supportElementsByClassName) {
 			this._targets = this._wrapper
@@ -58,9 +64,8 @@ export class Visible extends Component {
 			this.refresh = () => this;
 		} else {
 			this.refresh = () => {
-				this._targets = $(this._wrapper)
-					.find("." + this.options.targetClass)
-					.get();
+				this._targets =
+					this._wrapper.querySelector(this.option.targetClass);
 				return this;
 			};
 		}
@@ -114,7 +119,7 @@ export class Visible extends Component {
 			this._reviseElements = () => true;
 		} else {
 			this._reviseElements = (target, i) => {
-				if (!$(target).hasClass(this.options.targetClass)) {
+				if (this._hasClass(target, this.options.targetClass)) {
 					target.__VISIBLE__ = null;
 					this._targets.splice(i, 1);
 					return false;
