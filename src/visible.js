@@ -9,14 +9,23 @@ const EVENTS = {
 };
 
 /**
- * A module that checks if an element is visible in the base element or viewport.
- * @class
- * @name Visible
+ * A Class used to check whether an element is visible in the base element or viewport.
+ * @ko 엘리먼트가 기준 엘리먼트나 뷰포트 안에 보이는지 확인하는 클래스
+ * @alias eg.Visible
  * @extends Component
- * @group egjs
+ *
+ * @support {"ie": "7+", "ch" : "latest", "ff" : "latest",  "sf" : "latest", "edge" : "latest", "ios" : "7+", "an" : "2.1+ (except 3.x)"}
+ * @codepen {"id":"WbWzqq", "ko":"Visible 기본 예제", "en":"Visible basic example", "collectionId":"Ayrabj", "height" : 403}
  */
-
-export class Visible extends Component {
+class Visible extends Component {
+	/**
+	 * Create a Visible.
+	 * @ko eg.Visible을 생성한다.
+	 * @param {HTMLElement|String|jQuery} [element=document] A base element that detects if another element is visible<ko>엘리먼트가 보이는 기준 엘리먼트</ko>
+	 * @param {Object} options The option object of the Visible module<ko>Visible 모듈의 옵션 객체</ko>
+	 * @param {String} [options.targetClass="check_visible"] The class name of the element to be checked<ko>보이는지 확인할 엘리먼트의 클래스 이름</ko>
+	 * @param {Number} [options.expandSize=0] The size of the expanded area to be checked whether an element is visible. If this value is less than zero, the size of the area is smaller than that of the base element. <ko>기준 엘리먼트의 경계를 넘어 엘리먼트가 보이는지 확인할 영역의 크기. 값이 0보다 작으면 엘리먼트가 보이는지 확인할 영역의 크기가 기준 엘리먼트보다 작아진다</ko>
+	 */
 	constructor (element, options, _prefix) {
 		super();
 		this._prefix = _prefix || "";
@@ -57,6 +66,15 @@ export class Visible extends Component {
 			return new RegExp('(^| )' + className + '( |$)', 'gi').test(el.className);
 	}
 
+	/**
+	 * Updates the list of elements where the visibility property is to be checked
+	 * @ko visibility 속성을 검사할 엘리먼트의 목록을 갱신한다
+	 * @return {Visible} An instance of a module itself<ko>모듈 자신의 인스턴스</ko>
+	 *
+	 * @remark
+	 * If targets was added or removed from DOM tree, must call refresh method to update internal target list.
+	 * <ko>확인 대상이 영역 안에 추가되거나 삭제된 경우, 모듈내부에서 사용하는 확인 대상 목록을 이 메소드를 호출하여 갱신해야한다.<ko>
+	 */
 	refresh() {
 		if (this._supportElementsByClassName) {
 			this._targets = this._wrapper
@@ -72,6 +90,13 @@ export class Visible extends Component {
 		return this.refresh();
 	}
 
+	/**
+	 * Checks whether the visible of the target elements has changed. It trigger that change event on a component.
+	 * @ko 대상 엘리먼트의 가시성이 변경됐는지 체크한다. change 이벤트를 발생한다.
+	 * @param {Number} [delay=-1] Delay time. It delay that change event trigger.<ko>지연시간. change 이벤트 발생을 지연한다.</ko>
+	 * @param {Boolean} [containment=false] Whether to check only elements that are completely contained within the reference area.<ko>기준 영역 안에 완전히 포함된 엘리먼트만 체크할지 여부.</ko>
+	 * @return {Visible} An instance of a module itself<ko>모듈 자신의 인스턴스</ko>
+	 */
 	check(delay, containment) {
 		if (typeof delay !== "number") {
 			containment = delay;
@@ -183,8 +208,7 @@ export class Visible extends Component {
 		/**
 		 * This event is fired when the event is compared with the last verified one and there is an element of which the visibility property has changed.
 		 * @ko 마지막으로 확인한 결과와 비교해 visibility 속성이 변경된 엘리먼트가 있을 때 발생하는 이벤트
-		 * @name eg.Visible#change
-		 * @event
+		 * @event eg.Visible#change
 		 * @param {Array} visible Visible elements  (the element type is `HTMLElement`) <ko>보이게 된 엘리먼트들</ko>
 		 * @param {Array} invisible Invisible elements  (the element type is `HTMLElement`) <ko>안 보이게 된 엘리먼트들</ko>
 		 */
@@ -199,4 +223,39 @@ export class Visible extends Component {
 		this._targets = [];
 		this._wrapper = this._timer = null;
 	}
+
+	/**
+	 * A jQuery custom event of the Visible module. This event is fired when the event is compared with the last verified one and there is an element of which the visibility property has changed.
+	 *
+	 * @ko Visible 모듈의 jQuery 커스텀 이벤트. 마지막으로 확인한 결과와 비교해 visibility 속성이 변경된 엘리먼트가 있을 때 발생한다
+	 * @name jQuery#visible:change
+	 * @event
+	 * @example
+	 // create
+	 $("body").visible();
+	 // event
+	 $("body").on("visible:change",callback);
+	 $("body").off("visible:change",callback);
+	 $("body").trigger("visible:change",callback);
+	 * @see Visble
+	 */
+	/**
+	 * A jQuery plugin available in the Visible module.
+	 * @ko Visible 모듈의 jQuery 플러그인
+	 * @method jQuery.visible
+	 * @example
+	 // create
+	 $("body").visible();
+	 // event
+	 $("body").on("visible:change",callback);
+	 $("body").off("visible:change",callback);
+	 $("body").trigger("visible:change",callback);
+	 // method
+	 $("body").visible("option","circular",true); //Set option
+	 $("body").visible("instance"); // Return flicking instance
+	 $("body").visible("check",10); // Check to change target elements.
+	 * @see Visble#event:change
+	 */
 }
+
+export default Visible;
