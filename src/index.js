@@ -1,2 +1,2 @@
-import { Visible } from "./visible";
+var Visible = require("./visible").default;
 module.exports = Visible;
