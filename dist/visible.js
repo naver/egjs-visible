@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@egjs/component"));
+		module.exports = factory(require(undefined));
 	else if(typeof define === 'function' && define.amd)
-		define(["@egjs/component"], factory);
+		define("Visible", [], factory);
 	else if(typeof exports === 'object')
-		exports["Visible"] = factory(require("@egjs/component"));
+		exports["Visible"] = factory(require(undefined));
 	else
 		root["eg"] = root["eg"] || {}, root["eg"]["Visible"] = factory(root["eg"]["Component"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_1__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_2__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -73,37 +73,29 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.Visible = undefined;
-
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__egjs_component__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__egjs_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__egjs_component__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _component = __webpack_require__(1);
-
-var _component2 = _interopRequireDefault(_component);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Copyright (c) NAVER Corp.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * egjs-visible projects are licensed under the MIT license
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * Copyright (c) NAVER Corp.
+ * egjs-visible projects are licensed under the MIT license
+ */
 
 
 var EVENTS = {
@@ -118,7 +110,7 @@ var EVENTS = {
  * @group egjs
  */
 
-var Visible = exports.Visible = function (_Component) {
+var Visible = function (_Component) {
 	_inherits(Visible, _Component);
 
 	function Visible(element, options, _prefix) {
@@ -132,8 +124,7 @@ var Visible = exports.Visible = function (_Component) {
 			expandSize: 0
 		};
 		Object.assign(_this.options, options);
-
-		_this._wrapper = $(element)[0] || document;
+		_this._wrapper = element || document;
 
 		// this._wrapper is Element, or may be Window
 		if (_this._wrapper.nodeType && _this._wrapper.nodeType === 1) {
@@ -160,6 +151,11 @@ var Visible = exports.Visible = function (_Component) {
 	}
 
 	_createClass(Visible, [{
+		key: "_hasClass",
+		value: function _hasClass(el, className) {
+			if (el.classList) return el.classList.contains(className);else return new RegExp('(^| )' + className + '( |$)', 'gi').test(el.className);
+		}
+	}, {
 		key: "refresh",
 		value: function refresh() {
 			var _this2 = this;
@@ -171,7 +167,7 @@ var Visible = exports.Visible = function (_Component) {
 				};
 			} else {
 				this.refresh = function () {
-					_this2._targets = $(_this2._wrapper).find("." + _this2.options.targetClass).get();
+					_this2._targets = _this2._wrapper.querySelector(_this2.option.targetClass);
 					return _this2;
 				};
 			}
@@ -233,7 +229,7 @@ var Visible = exports.Visible = function (_Component) {
 				};
 			} else {
 				this._reviseElements = function (target, i) {
-					if (!$(target).hasClass(_this4.options.targetClass)) {
+					if (_this4._hasClass(target, _this4.options.targetClass)) {
 						target.__VISIBLE__ = null;
 						_this4._targets.splice(i, 1);
 						return false;
@@ -307,24 +303,22 @@ var Visible = exports.Visible = function (_Component) {
 	}]);
 
 	return Visible;
-}(_component2.default);
+}(__WEBPACK_IMPORTED_MODULE_0__egjs_component___default.a);
+
+/* harmony default export */ __webpack_exports__["default"] = (Visible);
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
+var Visible = __webpack_require__(0).default;
+module.exports = Visible;
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-
-
-var _visible = __webpack_require__(0);
-
-module.exports = _visible.Visible;
+module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
 
 /***/ })
 /******/ ]);
