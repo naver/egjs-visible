@@ -1,2 +1,3 @@
-var Visible = require("./visible").default;
+const Visible = require("./visible").default;
+
 module.exports = Visible;

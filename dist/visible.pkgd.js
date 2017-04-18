@@ -16,9 +16,9 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	function __webpack_require__(moduleId) {
 /******/
 /******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
+/******/ 		if(installedModules[moduleId]) {
 /******/ 			return installedModules[moduleId].exports;
-/******/
+/******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			i: moduleId,
@@ -84,6 +84,8 @@ return /******/ (function(modules) { // webpackBootstrap
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__egjs_component__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__egjs_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__egjs_component__);
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -106,7 +108,7 @@ var EVENTS = {
  * A Class used to check whether an element is visible in the base element or viewport.
  * @ko 엘리먼트가 기준 엘리먼트나 뷰포트 안에 보이는지 확인하는 클래스
  * @alias eg.Visible
- * @extends Component
+ * @extends eg.Component
  *
  * @support {"ie": "7+", "ch" : "latest", "ff" : "latest",  "sf" : "latest", "edge" : "latest", "ios" : "7+", "an" : "2.1+ (except 3.x)"}
  * @codepen {"id":"WbWzqq", "ko":"Visible 기본 예제", "en":"Visible basic example", "collectionId":"Ayrabj", "height" : 403}
@@ -116,8 +118,6 @@ var Visible = function (_Component) {
 	_inherits(Visible, _Component);
 
 	/**
-  * Create a Visible.
-  * @ko eg.Visible을 생성한다.
   * @param {HTMLElement|String|jQuery} [element=document] A base element that detects if another element is visible<ko>엘리먼트가 보이는 기준 엘리먼트</ko>
   * @param {Object} options The option object of the Visible module<ko>Visible 모듈의 옵션 객체</ko>
   * @param {String} [options.targetClass="check_visible"] The class name of the element to be checked<ko>보이는지 확인할 엘리먼트의 클래스 이름</ko>
@@ -134,24 +134,33 @@ var Visible = function (_Component) {
 			expandSize: 0
 		};
 		Object.assign(_this.options, options);
-		_this._wrapper = element || document;
+
+		if (element === undefined) {
+			_this._wrapper = document;
+		}if ((typeof element === "undefined" ? "undefined" : _typeof(element)) === "object") {
+			_this._wrapper = element;
+		} else if (typeof element === "string") {
+			_this._wrapper = document.querySelector(element);
+		}
 
 		// this._wrapper is Element, or may be Window
 		if (_this._wrapper.nodeType && _this._wrapper.nodeType === 1) {
 			_this._getAreaRect = _this._getWrapperRect;
 		} else {
-			_this._getAreaRect = _this._getWindowRect;
+			_this._getAreaRect = Visible._getWindowRect;
 		}
 
 		_this._targets = [];
 		_this._timer = null;
 		_this._supportElementsByClassName = function () {
 			var dummy = document.createElement("div");
-			var dummies = void 0;
+
 			if (!dummy.getElementsByClassName) {
 				return false;
 			}
-			dummies = dummy.getElementsByClassName("dummy");
+
+			var dummies = dummy.getElementsByClassName("dummy");
+
 			dummy.innerHTML = "<span class='dummy'></span>";
 			return dummies.length === 1;
 		}();
@@ -161,23 +170,18 @@ var Visible = function (_Component) {
 	}
 
 	_createClass(Visible, [{
-		key: "_hasClass",
-		value: function _hasClass(el, className) {
-			if (el.classList) return el.classList.contains(className);else return new RegExp('(^| )' + className + '( |$)', 'gi').test(el.className);
-		}
+		key: "refresh",
+
 
 		/**
    * Updates the list of elements where the visibility property is to be checked
    * @ko visibility 속성을 검사할 엘리먼트의 목록을 갱신한다
-   * @return {Visible} An instance of a module itself<ko>모듈 자신의 인스턴스</ko>
+   * @return {eg.Visible} An instance of a module itself<ko>모듈 자신의 인스턴스</ko>
    *
    * @remark
    * If targets was added or removed from DOM tree, must call refresh method to update internal target list.
    * <ko>확인 대상이 영역 안에 추가되거나 삭제된 경우, 모듈내부에서 사용하는 확인 대상 목록을 이 메소드를 호출하여 갱신해야한다.<ko>
    */
-
-	}, {
-		key: "refresh",
 		value: function refresh() {
 			var _this2 = this;
 
@@ -200,13 +204,16 @@ var Visible = function (_Component) {
    * @ko 대상 엘리먼트의 가시성이 변경됐는지 체크한다. change 이벤트를 발생한다.
    * @param {Number} [delay=-1] Delay time. It delay that change event trigger.<ko>지연시간. change 이벤트 발생을 지연한다.</ko>
    * @param {Boolean} [containment=false] Whether to check only elements that are completely contained within the reference area.<ko>기준 영역 안에 완전히 포함된 엘리먼트만 체크할지 여부.</ko>
-   * @return {Visible} An instance of a module itself<ko>모듈 자신의 인스턴스</ko>
+   * @return {eg.Visible} An instance of a module itself<ko>모듈 자신의 인스턴스</ko>
    */
 
 	}, {
 		key: "check",
-		value: function check(delay, containment) {
+		value: function check() {
 			var _this3 = this;
+
+			var delay = arguments.length <= 0 ? undefined : arguments[0];
+			var containment = arguments.length <= 1 ? undefined : arguments[1];
 
 			if (typeof delay !== "number") {
 				containment = delay;
@@ -238,20 +245,13 @@ var Visible = function (_Component) {
 			return this._wrapper.getBoundingClientRect();
 		}
 	}, {
-		key: "_getWindowRect",
-		value: function _getWindowRect() {
-			// [IE7] document.documentElement.clientHeight has always value 0 (bug)
-			return {
-				top: 0,
-				left: 0,
-				bottom: document.documentElement.clientHeight || document.body.clientHeight,
-				right: document.documentElement.clientWidth || document.body.clientWidth
-			};
-		}
-	}, {
 		key: "_reviseElements",
-		value: function _reviseElements(target, i) {
+		value: function _reviseElements() {
 			var _this4 = this;
+
+			for (var _len = arguments.length, params = Array(_len), _key = 0; _key < _len; _key++) {
+				params[_key] = arguments[_key];
+			}
 
 			if (this._supportElementsByClassName) {
 				this._reviseElements = function () {
@@ -259,7 +259,7 @@ var Visible = function (_Component) {
 				};
 			} else {
 				this._reviseElements = function (target, i) {
-					if (_this4._hasClass(target, _this4.options.targetClass)) {
+					if (Visible._hasClass(params[0], _this4.options.targetClass)) {
 						target.__VISIBLE__ = null;
 						_this4._targets.splice(i, 1);
 						return false;
@@ -267,7 +267,7 @@ var Visible = function (_Component) {
 					return true;
 				};
 			}
-			return this._reviseElements(target, i);
+			return this._reviseElements.apply(this, params);
 		}
 	}, {
 		key: "_check",
@@ -277,37 +277,45 @@ var Visible = function (_Component) {
 			var invisibles = [];
 
 			var i = void 0;
-			var area = void 0;
-			var rect = void 0;
 			var target = void 0;
 			var targetArea = void 0;
 			var before = void 0;
 			var after = void 0;
 
 			// Error Fix: Cannot set property top of #<ClientRect> which has only a getter
-			rect = this._getAreaRect();
-			area = {
+			var rect = this._getAreaRect();
+			var area = {
 				top: rect.top - expandSize,
 				left: rect.left - expandSize,
 				bottom: rect.bottom + expandSize,
 				right: rect.right + expandSize
 			};
 
-			for (i = this._targets.length - 1, target, targetArea, after, before; target = this._targets[i]; i--) {
+			for (i = this._targets.length - 1; target = this._targets[i]; i--) {
 				targetArea = target.getBoundingClientRect();
+
 				if (targetArea.width === 0 && targetArea.height === 0) {
 					continue;
 				}
+
 				if (this._reviseElements(target, i)) {
 					before = !!target.__VISIBLE__;
 
 					if (containment) {
-						target.__VISIBLE__ = after = !(targetArea.top < area.top || targetArea.bottom > area.bottom || targetArea.right > area.right || targetArea.left < area.left);
+						after = !(targetArea.top < area.top || targetArea.bottom > area.bottom || targetArea.right > area.right || targetArea.left < area.left);
+						target.__VISIBLE__ = after;
 					} else {
-						target.__VISIBLE__ = after = !(targetArea.bottom < area.top || area.bottom < targetArea.top || targetArea.right < area.left || area.right < targetArea.left);
+						after = !(targetArea.bottom < area.top || area.bottom < targetArea.top || targetArea.right < area.left || area.right < targetArea.left);
+						target.__VISIBLE__ = after;
 					}
 
-					before !== after && (after ? visibles : invisibles).unshift(target);
+					if (before !== after) {
+						if (after) {
+							visibles.unshift(target);
+						} else {
+							invisibles.unshift(target);
+						}
+					}
 				}
 			}
 			/**
@@ -327,7 +335,8 @@ var Visible = function (_Component) {
 		value: function destroy() {
 			this.off();
 			this._targets = [];
-			this._wrapper = this._timer = null;
+			this._wrapper = null;
+			this._timer = null;
 		}
 
 		/**
@@ -363,6 +372,26 @@ var Visible = function (_Component) {
    * @see Visble#event:change
    */
 
+	}], [{
+		key: "_hasClass",
+		value: function _hasClass(el, className) {
+			if (el.classList) {
+				return el.classList.contains(className);
+			} else {
+				return new RegExp("(^| )" + className + "( |$)", "gi").test(el.className);
+			}
+		}
+	}, {
+		key: "_getWindowRect",
+		value: function _getWindowRect() {
+			// [IE7] document.documentElement.clientHeight has always value 0 (bug)
+			return {
+				top: 0,
+				left: 0,
+				bottom: document.documentElement.clientHeight || document.body.clientHeight,
+				right: document.documentElement.clientWidth || document.body.clientWidth
+			};
+		}
 	}]);
 
 	return Visible;
@@ -786,6 +815,7 @@ module.exports = _component.Component;
 /***/ (function(module, exports, __webpack_require__) {
 
 var Visible = __webpack_require__(0).default;
+
 module.exports = Visible;
 
 /***/ })
