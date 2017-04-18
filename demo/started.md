@@ -9,8 +9,8 @@ IE 7+ (possibly 9 also), latest of Chrome/FF/Safari, iOS 7+ and Android 2.1+ (ex
 <!-- 1) Load jQuery -->
 <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
-<!-- 2) Load egjs packaged file -->
-<script src="http://naver.github.io/egjs/latest/dist/pkgd/eg.pkgd.min.js"></script>
+<!-- 2) Load egjs-visible packaged file -->
+<script src="http://naver.github.io/egjs-visible/dist/visible.pkgd.min.js"></script>
 ```
 
 
