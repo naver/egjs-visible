@@ -1,3 +1,3 @@
-const Visible = require("./visible").default;
+import Visible from "./visible";
 
 module.exports = Visible;
