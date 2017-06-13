@@ -13,25 +13,30 @@ var config = {
 	output: {
 		path: path.resolve(__dirname, "dist"),
 		filename: "[name].js",
-		library: ["eg", "Visible"],
-		libraryTarget: "umd",
-		umdNamedDefine: true
+		library: [pkg.namespace.eg, "Visible"],
+		libraryTarget: "umd"
 	},
 	externals: {
 		"@egjs/component": {
-			root: ["eg", "Component"]
+			root: [pkg.namespace.eg, "Component"]
 		}
 	},
 	module: {
 		rules: [{
-				test: /\.js$/,
-				exclude: /node_modules/,
+				test: /(\.js)$/,
+				exclude: /(node_modules)/,
 				loader: "babel-loader",
-				options: {
-					presets: [
-						["es2015", {
-							modules: false
-						}]
+				query: {
+					"presets": [ 
+						[
+							"es2015",
+							{
+								"loose": true,
+							}
+						]
+					],
+					"plugins": [
+						"add-module-exports"
 					]
 				}
 			},

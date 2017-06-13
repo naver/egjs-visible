@@ -12,19 +12,25 @@
     "prepush": "npm run lint",
     "commitmsg": "node config/validate-commit-msg.js",
     "test": "karma start",
-    "prebuild:demo": "cpx 'doc/**/*' demo/doc/ --clean && cpx 'dist/**/*' demo/dist --clean",
-    "build:demo": "jekyll build -s demo",
-    "open:demo": "npm run prebuild:demo && jekyll serve -s demo",
-    "deploy:demo": "gh-pages -d demo/_site"
+    "test:chrome": "karma start --chrome",
+    "demo:start": "npm run demo:prebuild && jekyll serve -s demo",
+    "demo:build": "jekyll build -s demo",
+    "demo:prebuild": "cpx 'doc/**/*' demo/doc/ --clean && cpx 'dist/**/*' demo/dist --clean",
+    "demo:deploy": "gh-pages -d demo/_site"
   },
-  "author": "NAVER Corp.",
+  "author": {
+    "name": "NAVER Corp."
+  },
+  "namespace" : {
+    "eg" : "eg"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/naver/egjs-visible"
   },
   "dependencies": {
-    "@egjs/component": "github:naver/egjs-component"
+    "@egjs/component": "^2.0.0-rc.1"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
