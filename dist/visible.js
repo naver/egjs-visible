@@ -1,10 +1,10 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require(undefined));
+		module.exports = factory(require("@egjs/component"));
 	else if(typeof define === 'function' && define.amd)
-		define("Visible", [], factory);
+		define("Visible", ["@egjs/component"], factory);
 	else if(typeof exports === 'object')
-		exports["Visible"] = factory(require(undefined));
+		exports["Visible"] = factory(require("@egjs/component"));
 	else
 		root["eg"] = root["eg"] || {}, root["eg"]["Visible"] = factory(root["eg"]["Component"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_3__) {
@@ -435,8 +435,14 @@ module.exports = function(originalModule) {
 "use strict";
 /* WEBPACK VAR INJECTION */(function(module) {Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__visible__ = __webpack_require__(0);
+/**
+ * Copyright (c) 2015 NAVER Corp.
+ * egjs projects are licensed under the MIT license
+ */
 
 
+
+__WEBPACK_IMPORTED_MODULE_0__visible__["a" /* default */].VERSION = "2.0.0-rc.2";
 module.exports = __WEBPACK_IMPORTED_MODULE_0__visible__["a" /* default */];
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)(module)))
 

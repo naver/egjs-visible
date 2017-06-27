@@ -1,6 +1,8 @@
 var webpack = require("webpack");
+var pkg = require("./package.json");
 var merge = require("webpack-merge");
 var UglifyJSPlugin = require("uglifyjs-webpack-plugin");
+var StringReplacePlugin = require("string-replace-webpack-plugin");
 
 var path = require("path");
 var parts = require("./webpack.parts");
@@ -18,6 +20,9 @@ var config = {
 	},
 	externals: {
 		"@egjs/component" : {
+			commonjs: "@egjs/component",
+			commonjs2: "@egjs/component",
+			amd: "@egjs/component",
 			root: ["eg", "Component"]
 		}
 	},
@@ -31,6 +36,16 @@ var config = {
 					["es2015", { modules: false }]
 				]
 			}
+		}, {
+			test: /(\.js)$/,
+			loader: StringReplacePlugin.replace({
+				replacements: [{
+					pattern: /#__VERSION__#/ig,
+					replacement: function(match, p1, offset, string) {
+						return pkg.version;
+					}
+				}]
+			})
 		}]
 	},
 	plugins: [
