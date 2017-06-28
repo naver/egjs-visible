@@ -1,4 +1,6 @@
-# egjs-visible
+# egjs-visible [![npm version](https://badge.fury.io/js/%40egjs%2Fvisible.svg)](https://badge.fury.io/js/%40egjs%2Fvisible)
+
+[![Issue Stats](http://issuestats.com/github/naver/egjs-visible/badge/pr?style=flat)](http://issuestats.com/github/naver/egjs-visible) [![Issue Stats](http://issuestats.com/github/naver/egjs-visible/badge/issue?style=flat)](http://issuestats.com/github/naver/egjs-visible)
 
 A class that checks if an element is visible in the base element or viewport.
 
@@ -7,7 +9,45 @@ A class that checks if an element is visible in the base element or viewport.
 * API Documentation
     - Latest: [http://naver.github.io/egjs/latest/doc/eg.Visible.html](http://naver.github.io/egjs/latest/doc/eg.Visible.html)
     - Specific version: [http://naver.github.io/egjs/[VERSION]/doc/eg.Visible.html](http://naver.github.io/egjs/[VERSION]/doc/eg.Visible.html)
-* An advanced demo is available here: [http://codepen.io/collection/AKpkGW/](http://codepen.io/collection/AKpkGW/)
+
+## Download and Installation
+
+Download dist files from repo directly or install it via npm. 
+
+### For development (Uncompressed)
+
+You can download the uncompressed files for development
+
+- Latest : https://naver.github.io/egjs-visible/release/latest/dist/visible.js
+- Specific version : https://naver.github.io/egjs-visible/release/[VERSION]/dist/visible.js
+
+### For production (Compressed)
+
+You can download the compressed files for production
+
+- Latest : https://naver.github.io/egjs-visible/release/latest/dist/visible.min.js
+- Specific version : https://naver.github.io/egjs-visible/release/[VERSION]/dist/visible.min.js
+
+### Packaged version (with eg.Component inclusion)
+
+> Packaged version is not an official distribution.
+> Is just to provide for ease use of 'egjs-visible' with dependency.
+
+ - **Latest**
+    - https://naver.github.io/egjs-visible/release/latest/dist/visible.pkgd.js
+    - https://naver.github.io/egjs-visible/release/latest/dist/visible.pkgd.min.js
+
+ - **Specific version**
+    - https://naver.github.io/egjs-visible/release/[VERSION]/dist/visible.pkgd.js
+    - https://naver.github.io/egjs-visible/release/[VERSION]/dist/visible.pkgd.min.js
+
+### Installation with npm
+
+The following command shows how to install egjs-visible using npm.
+
+``` bash
+$ npm install @egjs/visible
+```
 
 ## Supported Browsers
 
@@ -25,56 +65,9 @@ eg.Visible has the dependencies for the following libraries:
 |----|
 |2.0.0+|
 
-
-## How to Use
-
-### 1. Load dependency library before visible.js (or visible.min.js) load.
-```html
-<script src="../node_modules/@egjs/component/dist/component.js"></script>
-```
-
-### 2. Load visible.js
-```html
-<script src="../dist/visible.js"></script>
-```
-
-### 3. Make a target element
-```html
-<!-- Target DOM -->
-<ul id="contents">
-    <li class="check_visible">
-        <div>test1</div>
-    </li>
-    <li class="check_visible">
-        <div>test2</div>
-    </li>
-    <li class="check_visible">
-        <div>test3</div>
-    </li>
-    <li class="check_visible">
-        <div>test4</div>
-    </li>
-    <li class="check_visible">
-        <div>test5</div>
-    </li>
-    <li class="check_visible">
-        <div>test6</div>
-    </li>
-</ul>
-```
-
-### 4. Use eg.Visible
-```javascript
-// create eg.Visible with option
-var visible = new eg.Visible("#contents", {
-  targetClass: "check_visible"
-});
-```
-
 ## Bug Report
 
 If you find a bug, please report it to us using the [Issues](https://github.com/naver/egjs-visible/issues) page on GitHub.
-
 
 ## License
 eg.Visible is released under the [MIT license](http://naver.github.io/egjs/license.txt).
