@@ -2,7 +2,7 @@
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require(undefined));
 	else if(typeof define === 'function' && define.amd)
-		define([], factory);
+		define("Visible", [], factory);
 	else if(typeof exports === 'object')
 		exports["Visible"] = factory(require(undefined));
 	else
@@ -87,6 +87,8 @@ exports.__esModule = true;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _component = __webpack_require__(2);
 
 var _component2 = _interopRequireDefault(_component);
@@ -136,7 +138,7 @@ var Visible = function (_Component) {
 			targetClass: "check_visible",
 			expandSize: 0
 		};
-		Object.assign(_this.options, options);
+		_extends(_this.options, options);
 
 		if (element === undefined) {
 			_this._wrapper = document;
@@ -372,7 +374,11 @@ var _visible2 = _interopRequireDefault(_visible);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_visible2.default.VERSION = "2.0.0-rc.2";
+_visible2.default.VERSION = "2.0.0-rc.2"; /**
+                                           * Copyright (c) 2015 NAVER Corp.
+                                           * egjs projects are licensed under the MIT license
+                                           */
+
 module.exports = _visible2.default;
 
 /***/ }),
