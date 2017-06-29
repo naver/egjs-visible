@@ -141,16 +141,17 @@ describe("iScroll", () => {
 		visible.check();
 
 		visible.on("change", e => {
-			e.visible.should.to.have.lengthOf(3);
+			e.visible.should.to.have.lengthOf(5);
 			e.invisible.should.to.have.lengthOf(5);
 			done();
 		});
+
 
 		iScroll.scrollTo(0, -100);
 
 		setTimeout(() => {
 			visible.check();
-		}, 200)
+		}, 200);
 	});
 });
 

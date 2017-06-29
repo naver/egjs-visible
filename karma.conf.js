@@ -45,8 +45,8 @@ module.exports = function(config) {
 				base: "PhantomJS",
 				options: {
 					viewportSize: {
-						width: 1024,
-						height: 960
+						width: 1280,
+						height: 1280
 					}
 				}
 			}

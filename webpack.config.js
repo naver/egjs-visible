@@ -13,8 +13,9 @@ var config = {
 	output: {
 		path: path.resolve(__dirname, "dist"),
 		filename: "[name].js",
-		library: [pkg.namespace.eg, "Visible"],
-		libraryTarget: "umd"
+		library: ["eg", "Visible"],
+		libraryTarget: "umd",
+		umdNamedDefine: true
 	},
 	externals: {
 		"@egjs/component": {
@@ -27,7 +28,7 @@ var config = {
 				exclude: /(node_modules)/,
 				loader: "babel-loader",
 				query: {
-					"presets": [ 
+					"presets": [
 						[
 							"es2015",
 							{
@@ -75,7 +76,7 @@ var config = {
 	]
 };
 
-module.exports = function (env) {
+module.exports = function(env) {
 	env = env || "development";
 
 	if (env === "development") {

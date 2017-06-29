@@ -4,38 +4,51 @@ IE 7+ (possibly 9 also), latest of Chrome/FF/Safari, iOS 7+ and Android 2.1+ (ex
 ### Quick steps to use:
 
 
-#### Load files
-``` html
-<!-- 1) Load jQuery -->
-<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+#### Set up your HTML
 
-<!-- 2) Load egjs-visible packaged file -->
-<script src="http://naver.github.io/egjs-visible/dist/visible.pkgd.min.js"></script>
+``` html
+<!-- Target DOM -->
+<ul id="contents">
+  <li class="check_visible">
+    <div>test1</div>
+  </li>
+  <li class="check_visible">
+    <div>test2</div>
+  </li>
+  <li class="check_visible">
+    <div>test3</div>
+  </li>
+  <li class="check_visible">
+    <div>test4</div>
+  </li>
+  <li class="check_visible">
+    <div>test5</div>
+  </li>
+  <li class="check_visible">
+    <div>test6</div>
+  </li>
+</ul>
 ```
 
-
-#### Check markup requirement
-
-The first parameter should be a scrollable element.
+#### Load files or import library
 
 
-#### Setting up
+##### ES5
+``` html
+<script src="//{{ site.data.egjs.github.user }}.github.io/{{ site.data.egjs.github.repo }}/{{ site.data.egjs.download.production }}"></script>
+```
 
-``` javascript
-// Create eg.Visible instance
-var visible = new eg.Visible('.scroller',{
-    targetClass : "card",
-    expandSize : 0
+##### ES6+
+``` js
+import Visible from "@egjs/visible";
+```
+
+### Initialize
+
+#### ES5
+``` js
+// create eg.Visible with option
+var visible = new eg.Visible("#contents", {
+  targetClass: "check_visible"
 });
-
-// Add change event handler
-visible.on("change", function (e) {
-    $(e.visible).addClass("focus");
-    $(e.invisible).removeClass("focus");
-});
-
-// Call "check" method whenever you want to check visibility change of the elements compared with last time you call "check" method.
-// When you call "check" mehtod and if there is a change, "change" event will trigger.
-visible.check();    
-
 ```
