@@ -4,10 +4,6 @@
  */
 import Component from "@egjs/component";
 
-const EVENTS = {
-	"change": "change",
-};
-
 /**
  * A Class used to check whether an element is visible in the base element or viewport.
  * @ko 엘리먼트가 기준 엘리먼트나 뷰포트 안에 보이는지 확인하는 클래스
@@ -24,9 +20,8 @@ class Visible extends Component {
 	 * @param {String} [options.targetClass="check_visible"] The class name of the element to be checked<ko>보이는지 확인할 엘리먼트의 클래스 이름</ko>
 	 * @param {Number} [options.expandSize=0] The size of the expanded area to be checked whether an element is visible. If this value is less than zero, the size of the area is smaller than that of the base element. <ko>기준 엘리먼트의 경계를 넘어 엘리먼트가 보이는지 확인할 영역의 크기. 값이 0보다 작으면 엘리먼트가 보이는지 확인할 영역의 크기가 기준 엘리먼트보다 작아진다</ko>
 	 */
-	constructor(element, options, _prefix) {
+	constructor(element, options) {
 		super();
-		this._prefix = _prefix || "";
 		this.options = {
 			targetClass: "check_visible",
 			expandSize: 0,
@@ -230,7 +225,7 @@ class Visible extends Component {
 		 * @param {Array} visible Visible elements  (the element type is `HTMLElement`) <ko>보이게 된 엘리먼트들</ko>
 		 * @param {Array} invisible Invisible elements  (the element type is `HTMLElement`) <ko>안 보이게 된 엘리먼트들</ko>
 		 */
-		this.trigger(this._prefix + EVENTS.change, {
+		this.trigger("change", {
 			visible: visibles,
 			invisible: invisibles,
 		});

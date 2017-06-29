@@ -18,6 +18,7 @@ webpack.*.js
 doc
 demo
 jsdoc.json
+README.md
 
 #editor settings
 .idea
@@ -28,3 +29,4 @@ node_modules/
 .github
 .babelrc
 mocha.opts
+demo

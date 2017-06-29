@@ -203,6 +203,7 @@ GitHub.sublime-settings
 !.vscode/extensions.json
 
 ### Custom ###
-doc/
 report/
 temp/
+doc/
+demo/_data/version.yml

@@ -4,7 +4,7 @@
 		"dictionaries": ["jsdoc","closure"]
 	},
 	"source": {
-		"include": ["src", "README.md", "node_modules/@egjs/component/src/component.js"],
+		"include": ["src", "README.md" , "node_modules/@egjs/component/src/component.js"], 
 		"includePattern": ".+\\.js(doc|x)?$",
 		"excludePattern": "(^|\\/|\\\\)_"
 	},
@@ -16,7 +16,7 @@
 	},
 	"plugins": [
 		"plugins/markdown",
-		"node_modules/egjs-jsdoc-template/jsdoc-plugin/ko", 
+		"node_modules/egjs-jsdoc-template/jsdoc-plugin/ko",
 		"node_modules/egjs-jsdoc-template/jsdoc-plugin/group",
 		"node_modules/egjs-jsdoc-template/jsdoc-plugin/codepen",
 		"node_modules/egjs-jsdoc-template/jsdoc-plugin/support"
@@ -27,9 +27,9 @@
 		"default": {
 			"outputSourceFiles" : true
 		},
-		"applicationName": "egjs",
+		"applicationName": "eg.Visible",
 		"disqus": "egjs",
-		"googleAnalytics": "",
+		"googleAnalytics": "UA-70842526-13",
 		"openGraph": {
 			"title": "",
 			"type": "website",
@@ -39,12 +39,12 @@
 		},
 		"meta": {
 			"title": "egjs::visible - API",
-			"description": "&#34;A module that checks if an element is visible in the base element or viewport.&#34;",
-			"keyword": "jQuery, UI Component, egjs, visible"
+			"description": "A class that checks if an element is visible in the base element or viewport.",
+			"keyword": ""
 		},
 		"linenums": true,
 		"link": {
-			"canonical": "http://naver.github.io/egjs/latest/doc/"
+			"canonical": "http://naver.github.io/egjs-visible/release/latest/doc/"
 		}
 	},
 	"markdown": {

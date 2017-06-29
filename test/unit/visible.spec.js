@@ -96,27 +96,6 @@ describe("visible", () => {
 	});
 });
 
-describe("custom event", () => {
-	describe("#prefixEvent", () => {
-		it("should triggered prefix event when scroll", done => {
-			let isTriggered = false;
-			let customVisible = new Visible(document, {}, "TEST:");
-
-			customVisible.on("TEST:change", function() {
-				isTriggered = true;
-			});
-
-			window.scrollTo(0, 300);
-			customVisible.check();
-
-			setTimeout(() => {
-				isTriggered.should.to.be.true;
-				done();
-			}, 200);
-		});
-	});
-});
-
 describe("iScroll", () => {
 	let visible,
 		iScroll;
@@ -142,7 +121,7 @@ describe("iScroll", () => {
 
 		visible.on("change", e => {
 			e.visible.should.to.have.lengthOf(3);
-			e.invisible.should.to.have.lengthOf(5);
+			e.invisible.should.to.have.lengthOf(3);
 			done();
 		});
 
