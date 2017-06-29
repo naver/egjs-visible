@@ -1,10 +1,10 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@egjs/component"));
+		module.exports = factory(require(undefined));
 	else if(typeof define === 'function' && define.amd)
-		define("Visible", ["@egjs/component"], factory);
+		define([], factory);
 	else if(typeof exports === 'object')
-		exports["Visible"] = factory(require("@egjs/component"));
+		exports["Visible"] = factory(require(undefined));
 	else
 		root["eg"] = root["eg"] || {}, root["eg"]["Visible"] = factory(root["eg"]["Component"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_2__) {
@@ -87,8 +87,6 @@ exports.__esModule = true;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 var _component = __webpack_require__(2);
 
 var _component2 = _interopRequireDefault(_component);
@@ -138,7 +136,7 @@ var Visible = function (_Component) {
 			targetClass: "check_visible",
 			expandSize: 0
 		};
-		_extends(_this.options, options);
+		Object.assign(_this.options, options);
 
 		if (element === undefined) {
 			_this._wrapper = document;
@@ -355,40 +353,6 @@ var Visible = function (_Component) {
 		this._timer = null;
 	};
 
-	/**
-  * A jQuery custom event of the Visible module. This event is fired when the event is compared with the last verified one and there is an element of which the visibility property has changed.
-  *
-  * @ko Visible 모듈의 jQuery 커스텀 이벤트. 마지막으로 확인한 결과와 비교해 visibility 속성이 변경된 엘리먼트가 있을 때 발생한다
-  * @name jQuery#visible:change
-  * @event
-  * @example
-  // create
-  $("body").visible();
-  // event
-  $("body").on("visible:change",callback);
-  $("body").off("visible:change",callback);
-  $("body").trigger("visible:change",callback);
-  * @see Visble
-  */
-	/**
-  * A jQuery plugin available in the Visible module.
-  * @ko Visible 모듈의 jQuery 플러그인
-  * @method jQuery.visible
-  * @example
-  // create
-  $("body").visible();
-  // event
-  $("body").on("visible:change",callback);
-  $("body").off("visible:change",callback);
-  $("body").trigger("visible:change",callback);
-  // method
-  $("body").visible("option","circular",true); //Set option
-  $("body").visible("instance"); // Return flicking instance
-  $("body").visible("check",10); // Check to change target elements.
-  * @see Visble#event:change
-  */
-
-
 	return Visible;
 }(_component2.default);
 
@@ -408,11 +372,7 @@ var _visible2 = _interopRequireDefault(_visible);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_visible2.default.VERSION = "2.0.0-rc.2"; /**
-                                           * Copyright (c) 2015 NAVER Corp.
-                                           * egjs projects are licensed under the MIT license
-                                           */
-
+_visible2.default.VERSION = "2.0.0-rc.2";
 module.exports = _visible2.default;
 
 /***/ }),

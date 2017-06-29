@@ -1,4 +1,4 @@
-import Visible from "../../src/visible";
+import Visible from "../../src/Visible";
 
 function getWindowInnerHeight() {
 	return window.innerHeight
@@ -52,7 +52,7 @@ describe("visible", () => {
 			visible.options.expandSize = itemOffsetHeight * 2;
 
 			visible.on("change", e => {
-				e.visible.should.have.length.of(visibleItemLength);
+				e.visible.should.have.lengthOf(visibleItemLength);
 				e.invisible.should.have.lengthOf(0);
 				done();
 			});

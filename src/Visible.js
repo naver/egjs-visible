@@ -242,39 +242,6 @@ class Visible extends Component {
 		this._wrapper = null;
 		this._timer = null;
 	}
-
-	/**
-	 * A jQuery custom event of the Visible module. This event is fired when the event is compared with the last verified one and there is an element of which the visibility property has changed.
-	 *
-	 * @ko Visible 모듈의 jQuery 커스텀 이벤트. 마지막으로 확인한 결과와 비교해 visibility 속성이 변경된 엘리먼트가 있을 때 발생한다
-	 * @name jQuery#visible:change
-	 * @event
-	 * @example
-	 // create
-	 $("body").visible();
-	 // event
-	 $("body").on("visible:change",callback);
-	 $("body").off("visible:change",callback);
-	 $("body").trigger("visible:change",callback);
-	 * @see Visble
-	 */
-	/**
-	 * A jQuery plugin available in the Visible module.
-	 * @ko Visible 모듈의 jQuery 플러그인
-	 * @method jQuery.visible
-	 * @example
-	 // create
-	 $("body").visible();
-	 // event
-	 $("body").on("visible:change",callback);
-	 $("body").off("visible:change",callback);
-	 $("body").trigger("visible:change",callback);
-	 // method
-	 $("body").visible("option","circular",true); //Set option
-	 $("body").visible("instance"); // Return flicking instance
-	 $("body").visible("check",10); // Check to change target elements.
-	 * @see Visble#event:change
-	 */
 }
 
 export default Visible;
