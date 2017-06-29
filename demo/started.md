@@ -8,35 +8,26 @@ IE 7+ (possibly 9 also), latest of Chrome/FF/Safari, iOS 7+ and Android 2.1+ (ex
 
 ``` html
 <!-- Target DOM -->
-<div class="scroller">
-  <div class="card item"></div>
-  <div class="card item"></div>
-  <div class="card item"></div>
-  <div class="card item"></div>
-  <div class="card item"></div>
-  <div class="card item"></div>
-  <div class="card item"></div>
-  <div class="card item"></div>
-  <div class="card item"></div>
-  <div class="card item"></div>
-  <div class="card item"></div>
-  <div class="card item"></div>
-  <div class="card item"></div>
-  <div class="card item"></div>
-  <div class="card item"></div>
-  <div class="card item"></div>
-  <div class="card item"></div>
-  <div class="card item"></div>
-  <div class="card item"></div>
-  <div class="card item"></div>
-  <div class="card item"></div>
-  <div class="card item"></div>
-  <div class="card item"></div>
-  <div class="card item"></div>
-  <div class="card item"></div>
-  <div class="card item"></div>
-  <div class="card item"></div>
-</div>
+<ul id="contents">
+  <li class="check_visible">
+    <div>test1</div>
+  </li>
+  <li class="check_visible">
+    <div>test2</div>
+  </li>
+  <li class="check_visible">
+    <div>test3</div>
+  </li>
+  <li class="check_visible">
+    <div>test4</div>
+  </li>
+  <li class="check_visible">
+    <div>test5</div>
+  </li>
+  <li class="check_visible">
+    <div>test6</div>
+  </li>
+</ul>
 ```
 
 #### Load files or import library
@@ -44,9 +35,7 @@ IE 7+ (possibly 9 also), latest of Chrome/FF/Safari, iOS 7+ and Android 2.1+ (ex
 
 ##### ES5
 ``` html
-{% for dist in site.data.egjs.dist %}
-<script src="//{{ site.data.egjs.github.user }}.github.io/{{ site.data.egjs.github.repo }}/{{ dist }}"></script>
-{% endfor %}
+<script src="//{{ site.data.egjs.github.user }}.github.io/{{ site.data.egjs.github.repo }}/{{ site.data.egjs.download.production }}"></script>
 ```
 
 ##### ES6+
@@ -58,16 +47,8 @@ import Visible from "@egjs/visible";
 
 #### ES5
 ``` js
-// Create eg.Visible instance
-var visible = new eg.Visible('#contents');
-
-// Add change event handler
-visible.on("change", function (e) {
-    $(e.visible).addClass("focus");
-    $(e.invisible).removeClass("focus");
+// create eg.Visible with option
+var visible = new eg.Visible("#contents", {
+  targetClass: "check_visible"
 });
-
-// Call "check" method whenever you want to check visibility change of the elements compared with last time you call "check" method.
-// When you call "check" mehtod and if there is a change, "change" event will trigger.
-visible.check();
 ```
