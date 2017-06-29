@@ -1,0 +1,2096 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Class: Visible | egjs::visible - API</title>
+    
+    <meta name="description" content="A class that checks if an element is visible in the base element or viewport." />
+    
+    
+    
+    <meta property="og:title" content=""/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content=""/>
+    
+    <meta property="og:url" content=""/>
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <script src="scripts/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <link rel="canonical" href="http://naver.github.io/egjs-visible/release/latest/doc/"/>
+    
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/jaguar.css">
+    
+    
+    <script>
+    var config = {"monospaceLinks":true,"cleverLinks":true,"default":{"outputSourceFiles":true},"applicationName":"eg.Visible","disqus":"egjs","googleAnalytics":"UA-70842526-13","openGraph":{"title":"","type":"website","image":"","site_name":"","url":""},"meta":{"title":"egjs::visible - API","description":"A class that checks if an element is visible in the base element or viewport.","keyword":""},"linenums":true,"link":{"canonical":"http://naver.github.io/egjs-visible/release/latest/doc/"}};
+    </script>
+    
+
+    
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', config.googleAnalytics]);
+      _gaq.push(['_trackPageview']);
+    
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    
+</head>
+<body>
+<div id="wrap" class="clearfix">
+    
+<div class="navigation">
+    <h3 class="applicationName"><a href="http://naver.github.io/egjs/">eg.Visible</a></h3>
+
+    <div class="search">
+        <input id="search" type="text" class="form-control input-sm" placeholder="Search Documentations">
+    </div>
+    <ul class="list">
+    
+        <!-- Non Grouping Version -->
+        
+            
+
+        
+            
+
+<li class="item" data-name="eg.Visible">
+    <span class="title">
+        <a href="eg.Visible.html">eg.Visible</a>
+        
+    </span>
+    <ul class="members itemMembers expends">
+    
+    </ul>
+    <ul class="typedefs itemMembers expends">
+    
+    </ul>
+    <ul class="methods itemMembers expends">
+    
+    <span class="subtitle">Methods</span>
+    
+        <li data-name="eg.Visible#check"><a href="eg.Visible.html#check">check</a></li>
+    
+        <li data-name="eg.Visible#hasOn"><a href="eg.Visible.html#hasOn">hasOn</a> <img src="img/i.png" width="14" title="inherited" alt="inherited"></li>
+    
+        <li data-name="eg.Visible#off"><a href="eg.Visible.html#off">off</a> <img src="img/i.png" width="14" title="inherited" alt="inherited"></li>
+    
+        <li data-name="eg.Visible#on"><a href="eg.Visible.html#on">on</a> <img src="img/i.png" width="14" title="inherited" alt="inherited"></li>
+    
+        <li data-name="eg.Visible#once"><a href="eg.Visible.html#once">once</a> <img src="img/i.png" width="14" title="inherited" alt="inherited"></li>
+    
+        <li data-name="eg.Visible#option"><a href="eg.Visible.html#option">option</a> <img src="img/i.png" width="14" title="inherited" alt="inherited"></li>
+    
+        <li data-name="eg.Visible#refresh"><a href="eg.Visible.html#refresh">refresh</a></li>
+    
+        <li data-name="eg.Visible#trigger"><a href="eg.Visible.html#trigger">trigger</a> <img src="img/i.png" width="14" title="inherited" alt="inherited"></li>
+    
+    </ul>
+    <ul class="events itemMembers expends">
+    
+    <span class="subtitle">Events</span>
+    
+        <li data-name="eg.Visible#event:change"><a href="eg.Visible.html#event:change">change</a></li>
+    
+    </ul>
+
+    
+    <span class="title" style="margin-top:10px"><a href="index.html">readme</a></span>
+
+</li>
+
+        
+    
+    </ul>
+</div>
+
+    <div class="main">
+        <h1 class="page-title" data-filename="eg.Visible.html">Class: Visible</h1>
+        
+
+
+
+<section>
+
+<header>
+    <h2>
+    eg.Visible
+    </h2>
+    <button id="toggle">
+        
+            English
+        
+    </button>
+</header>
+
+<article>
+    <div class="container-overview">
+    
+
+    
+        
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="Visible">
+            
+            new eg.Visible<span class="signature">(<span class="optional">element</span>, options)</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="src_Visible.js.html">Visible.js</a>, <a href="src_Visible.js.html#line16">line 16</a>
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+	<div class="description en">
+		<p>A Class used to check whether an element is visible in the base element or viewport.</p>
+	</div>
+	
+	
+	<div class="description ko">
+		<p>엘리먼트가 기준 엘리먼트나 뷰포트 안에 보이는지 확인하는 클래스</p>
+	</div>
+	
+
+    
+    
+    
+    
+    
+        
+
+<ul class="parameters">
+    
+    <li>
+        <!-- parameter name -->
+        <div>
+            <strong>element</strong>
+            
+                (default: <code>document</code>)
+            
+
+            
+                
+                    <span class="optional">optional</span>
+                
+                
+                    
+                
+            
+        </div>
+        <!-- parameter type -->
+        
+        <div>Type: 
+<span class="param-type">HTMLElement</span>
+|
+
+<span class="param-type">String</span>
+|
+
+<span class="param-type">jQuery</span>
+
+</div>
+        
+    
+        <!-- Description -->
+        <div>
+            
+            <div class="description en"><p>A base element that detects if another element is visible</p></div>
+            <div class="description ko"><p>엘리먼트가 보이는 기준 엘리먼트</p></div>
+            
+        </div>
+
+        <!-- Sub parameters -->
+        
+    </li>
+    
+    <li>
+        <!-- parameter name -->
+        <div>
+            <strong>options</strong>
+            
+
+            
+                
+                
+                    
+                
+            
+        </div>
+        <!-- parameter type -->
+        
+        <div>Type: 
+<span class="param-type">Object</span>
+
+</div>
+        
+    
+        <!-- Description -->
+        <div>
+            
+            <div class="description en"><p>The option object of the Visible module</p></div>
+            <div class="description ko"><p>Visible 모듈의 옵션 객체</p></div>
+            
+        </div>
+
+        <!-- Sub parameters -->
+        
+            
+
+<ul class="parameters">
+    
+    <li>
+        <!-- parameter name -->
+        <div>
+            <strong>targetClass</strong>
+            
+                (default: <code>"check_visible"</code>)
+            
+
+            
+                
+                    <span class="optional">optional</span>
+                
+                
+                    
+                
+            
+        </div>
+        <!-- parameter type -->
+        
+        <div>Type: 
+<span class="param-type">String</span>
+
+</div>
+        
+    
+        <!-- Description -->
+        <div>
+            
+            <div class="description en"><p>The class name of the element to be checked</p></div>
+            <div class="description ko"><p>보이는지 확인할 엘리먼트의 클래스 이름</p></div>
+            
+        </div>
+
+        <!-- Sub parameters -->
+        
+    </li>
+    
+    <li>
+        <!-- parameter name -->
+        <div>
+            <strong>expandSize</strong>
+            
+                (default: <code>0</code>)
+            
+
+            
+                
+                    <span class="optional">optional</span>
+                
+                
+                    
+                
+            
+        </div>
+        <!-- parameter type -->
+        
+        <div>Type: 
+<span class="param-type">Number</span>
+
+</div>
+        
+    
+        <!-- Description -->
+        <div>
+            
+            <div class="description en"><p>The size of the expanded area to be checked whether an element is visible. If this value is less than zero, the size of the area is smaller than that of the base element. </p></div>
+            <div class="description ko"><p>기준 엘리먼트의 경계를 넘어 엘리먼트가 보이는지 확인할 영역의 크기. 값이 0보다 작으면 엘리먼트가 보이는지 확인할 영역의 크기가 기준 엘리먼트보다 작아진다</p></div>
+            
+        </div>
+
+        <!-- Sub parameters -->
+        
+    </li>
+    
+</ul>
+        
+    </li>
+    
+</ul>
+    
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+    
+        <h4 class="subsection-title">Codepen: </h4>
+        
+
+        
+        <div class="description ko"><a href="http://codepen.io/collection/Ayrabj">전체 데모 보기</a></div>
+        <div class="description en"><a href="http://codepen.io/collection/Ayrabj">Demo Collection</a></div>
+        
+
+        
+        <div class="description ko">Visible 기본 예제</div>
+        <div class="description en">Visible basic example</div>
+        <p data-height="403" data-theme-id="0" data-slug-hash="WbWzqq" data-default-tab="result" data-user="egjs" class='codepen'>See the Pen <a href='http://codepen.io/egjs/pen/WbWzqq/'>eg.Flicking</a> by egjs (<a href='http://codepen.io/egjs'>@egjs</a>) on <a href='http://codepen.io'>CodePen</a>.</p>            <script async src="http://assets.codepen.io/assets/embed/ei.js"></script>
+         <!-- if codepen.id -->
+         <!-- toCodepenEmbedHtml 상단 -->
+    <!-- if data.codepen -->
+</dl>
+
+</dd>
+
+
+
+        
+            <h3 class="subsection-title">Browser Support</h3>
+            <table class="support">
+                <thead>
+                    <tr>
+                        <th>Browser</th>
+                        <th>Version</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        
+                        <tr>
+                            <td>Desktop - Internet Explorer</td>
+                            <td>7+</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Desktop - Chrome</td>
+                            <td>latest</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Desktop - Firefox</td>
+                            <td>latest</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Desktop - Safari</td>
+                            <td>latest</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Desktop - Edge</td>
+                            <td>latest</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>iOS</td>
+                            <td>7+</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Andorid</td>
+                            <td>2.1+ (except 3.x)</td>
+                        </tr>
+                        
+                </tbody>
+            </table>
+        
+
+
+    
+    </div>
+
+
+    
+        <h3 class="subsection-title">Extends</h3>
+
+        <ul>
+            <li>
+            	
+            	eg.Component
+            	
+            </li>
+        </ul>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="check">
+            
+            check<span class="signature">(<span class="optional">delay</span>, <span class="optional">containment</span>)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="eg.Visible.html">eg.Visible</a>}</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="src_Visible.js.html">Visible.js</a>, <a href="src_Visible.js.html#line103">line 103</a>
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+	<div class="description en">
+		<p>Checks whether the visible of the target elements has changed. It trigger that change event on a component.</p>
+	</div>
+	
+	
+	<div class="description ko">
+		<p>대상 엘리먼트의 가시성이 변경됐는지 체크한다. change 이벤트를 발생한다.</p>
+	</div>
+	
+
+    
+    
+    
+    
+    
+        
+
+<ul class="parameters">
+    
+    <li>
+        <!-- parameter name -->
+        <div>
+            <strong>delay</strong>
+            
+                (default: <code>-1</code>)
+            
+
+            
+                
+                    <span class="optional">optional</span>
+                
+                
+                    
+                
+            
+        </div>
+        <!-- parameter type -->
+        
+        <div>Type: 
+<span class="param-type">Number</span>
+
+</div>
+        
+    
+        <!-- Description -->
+        <div>
+            
+            <div class="description en"><p>Delay time. It delay that change event trigger.</p></div>
+            <div class="description ko"><p>지연시간. change 이벤트 발생을 지연한다.</p></div>
+            
+        </div>
+
+        <!-- Sub parameters -->
+        
+    </li>
+    
+    <li>
+        <!-- parameter name -->
+        <div>
+            <strong>containment</strong>
+            
+                (default: <code>false</code>)
+            
+
+            
+                
+                    <span class="optional">optional</span>
+                
+                
+                    
+                
+            
+        </div>
+        <!-- parameter type -->
+        
+        <div>Type: 
+<span class="param-type">Boolean</span>
+
+</div>
+        
+    
+        <!-- Description -->
+        <div>
+            
+            <div class="description en"><p>Whether to check only elements that are completely contained within the reference area.</p></div>
+            <div class="description ko"><p>기준 영역 안에 완전히 포함된 엘리먼트만 체크할지 여부.</p></div>
+            
+        </div>
+
+        <!-- Sub parameters -->
+        
+    </li>
+    
+</ul>
+    
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Type</th>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+        <tr>
+            
+            <td class="type">
+            
+                    	
+                        <a href="eg.Visible.html">eg.Visible</a>
+                        
+                        
+                    
+            </td>
+            <td class="description last">
+                
+                <div class="en">An instance of a module itself</div>
+                <div class="ko"><p>모듈 자신의 인스턴스</p></div>
+                
+
+                
+            </td>
+        </tr>
+    
+    </tbody>
+</table>
+
+    
+    
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+    <!-- if data.codepen -->
+</dl>
+
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer inherited">
+        <h4 class="name" id="hasOn">
+            
+                <span class="inherited"><a href="eg.Component.html#hasOn">inherited</a></span>
+            
+            hasOn<span class="signature">(eventName)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{Boolean}</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="node_modules_@egjs_component_src_component.js.html">component.js</a>, <a href="node_modules_@egjs_component_src_component.js.html#line170">line 170</a>
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+	<div class="description en">
+		<p>Checks whether an event has been attached to a component.</p>
+	</div>
+	
+	
+	<div class="description ko">
+		<p>컴포넌트에 이벤트가 등록됐는지 확인한다.</p>
+	</div>
+	
+
+    
+    
+    
+    
+    
+        
+
+<ul class="parameters">
+    
+    <li>
+        <!-- parameter name -->
+        <div>
+            <strong>eventName</strong>
+            
+
+            
+        </div>
+        <!-- parameter type -->
+        
+        <div>Type: 
+<span class="param-type">String</span>
+
+</div>
+        
+    
+        <!-- Description -->
+        <div>
+            
+            <div class="description en"><p>The name of the event to be attached </p></div>
+            <div class="description ko"><p>등록 여부를 확인할 이벤트의 이름</p></div>
+            
+        </div>
+
+        <!-- Sub parameters -->
+        
+    </li>
+    
+</ul>
+    
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Type</th>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+        <tr>
+            
+            <td class="type">
+            
+                    	
+                        Boolean
+                        
+                        
+                    
+            </td>
+            <td class="description last">
+                
+                <div class="en">Indicates whether the event is attached. </div>
+                <div class="ko"><p>이벤트 등록 여부</p></div>
+                
+
+                
+            </td>
+        </tr>
+    
+    </tbody>
+</table>
+
+    
+    
+    
+        <h5>Example</h5>
+        
+
+    
+    <pre class="prettyprint"><code><p>class Some extends eg.Component {<br>  some() {<br>    this.hasOn(&quot;hi&quot;);// check hi event.<br>  }<br>}</p></code></pre>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+    <!-- if data.codepen -->
+</dl>
+
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer inherited">
+        <h4 class="name" id="off">
+            
+                <span class="inherited"><a href="eg.Component.html#off">inherited</a></span>
+            
+            off<span class="signature">(eventName, handlerToDetach)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{eg.Component}</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="node_modules_@egjs_component_src_component.js.html">component.js</a>, <a href="node_modules_@egjs_component_src_component.js.html#line230">line 230</a>
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+	<div class="description en">
+		<p>Detaches an event from the component.</p>
+	</div>
+	
+	
+	<div class="description ko">
+		<p>컴포넌트에 등록된 이벤트를 해제한다</p>
+	</div>
+	
+
+    
+    
+    
+    
+    
+        
+
+<ul class="parameters">
+    
+    <li>
+        <!-- parameter name -->
+        <div>
+            <strong>eventName</strong>
+            
+
+            
+        </div>
+        <!-- parameter type -->
+        
+        <div>Type: 
+<span class="param-type">eventName</span>
+
+</div>
+        
+    
+        <!-- Description -->
+        <div>
+            
+            <div class="description en"><p>The name of the event to be detached </p></div>
+            <div class="description ko"><p>해제할 이벤트의 이름</p></div>
+            
+        </div>
+
+        <!-- Sub parameters -->
+        
+    </li>
+    
+    <li>
+        <!-- parameter name -->
+        <div>
+            <strong>handlerToDetach</strong>
+            
+
+            
+        </div>
+        <!-- parameter type -->
+        
+        <div>Type: 
+<span class="param-type">function</span>
+
+</div>
+        
+    
+        <!-- Description -->
+        <div>
+            
+            <div class="description en"><p>The handler function of the event to be detached </p></div>
+            <div class="description ko"><p>해제할 이벤트의 핸들러 함수</p></div>
+            
+        </div>
+
+        <!-- Sub parameters -->
+        
+    </li>
+    
+</ul>
+    
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Type</th>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+        <tr>
+            
+            <td class="type">
+            
+                    	
+                    	eg.Component
+                    	
+                        
+                    
+            </td>
+            <td class="description last">
+                
+                <div class="en">An instance of a component itself </div>
+                <div class="ko"><p>컴포넌트 자신의 인스턴스</p></div>
+                
+
+                
+            </td>
+        </tr>
+    
+    </tbody>
+</table>
+
+    
+    
+    
+        <h5>Example</h5>
+        
+
+    
+    <pre class="prettyprint"><code><p>class Some extends eg.Component {<br>  hi() {<br>    console.log(&quot;hi&quot;);<br>  }<br>  some() {<br>    this.off(&quot;hi&quot;,this.hi); //detach event<br>  }<br>}</p></code></pre>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+    <!-- if data.codepen -->
+</dl>
+
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer inherited">
+        <h4 class="name" id="on">
+            
+                <span class="inherited"><a href="eg.Component.html#on">inherited</a></span>
+            
+            on<span class="signature">(eventName, handlerToAttach)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{eg.Component}</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="node_modules_@egjs_component_src_component.js.html">component.js</a>, <a href="node_modules_@egjs_component_src_component.js.html#line190">line 190</a>
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+	<div class="description en">
+		<p>Attaches an event to a component.</p>
+	</div>
+	
+	
+	<div class="description ko">
+		<p>컴포넌트에 이벤트를 등록한다.</p>
+	</div>
+	
+
+    
+    
+    
+    
+    
+        
+
+<ul class="parameters">
+    
+    <li>
+        <!-- parameter name -->
+        <div>
+            <strong>eventName</strong>
+            
+
+            
+        </div>
+        <!-- parameter type -->
+        
+        <div>Type: 
+<span class="param-type">eventName</span>
+
+</div>
+        
+    
+        <!-- Description -->
+        <div>
+            
+            <div class="description en"><p>The name of the event to be attached </p></div>
+            <div class="description ko"><p>등록할 이벤트의 이름</p></div>
+            
+        </div>
+
+        <!-- Sub parameters -->
+        
+    </li>
+    
+    <li>
+        <!-- parameter name -->
+        <div>
+            <strong>handlerToAttach</strong>
+            
+
+            
+        </div>
+        <!-- parameter type -->
+        
+        <div>Type: 
+<span class="param-type">function</span>
+
+</div>
+        
+    
+        <!-- Description -->
+        <div>
+            
+            <div class="description en"><p>The handler function of the event to be attached </p></div>
+            <div class="description ko"><p>등록할 이벤트의 핸들러 함수</p></div>
+            
+        </div>
+
+        <!-- Sub parameters -->
+        
+    </li>
+    
+</ul>
+    
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Type</th>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+        <tr>
+            
+            <td class="type">
+            
+                    	
+                    	eg.Component
+                    	
+                        
+                    
+            </td>
+            <td class="description last">
+                
+                <div class="en">An instance of a component itself</div>
+                <div class="ko"><p>컴포넌트 자신의 인스턴스</p></div>
+                
+
+                
+            </td>
+        </tr>
+    
+    </tbody>
+</table>
+
+    
+    
+    
+        <h5>Example</h5>
+        
+
+    
+    <pre class="prettyprint"><code><p>class Some extends eg.Component {<br>  hi() {<br>    console.log(&quot;hi&quot;);<br>  }<br>  some() {<br>    this.on(&quot;hi&quot;,this.hi); //attach event<br>  }<br>}</p></code></pre>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+    <!-- if data.codepen -->
+</dl>
+
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer inherited">
+        <h4 class="name" id="once">
+            
+                <span class="inherited"><a href="eg.Component.html#once">inherited</a></span>
+            
+            once<span class="signature">(eventName, handlerToAttach)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{eg.Component}</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="node_modules_@egjs_component_src_component.js.html">component.js</a>, <a href="node_modules_@egjs_component_src_component.js.html#line135">line 135</a>
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+	<div class="description en">
+		<p>Executed event just one time.</p>
+	</div>
+	
+	
+	<div class="description ko">
+		<p>이벤트가 한번만 실행된다.</p>
+	</div>
+	
+
+    
+    
+    
+    
+    
+        
+
+<ul class="parameters">
+    
+    <li>
+        <!-- parameter name -->
+        <div>
+            <strong>eventName</strong>
+            
+
+            
+        </div>
+        <!-- parameter type -->
+        
+        <div>Type: 
+<span class="param-type">eventName</span>
+
+</div>
+        
+    
+        <!-- Description -->
+        <div>
+            
+            <div class="description en"><p>The name of the event to be attached </p></div>
+            <div class="description ko"><p>등록할 이벤트의 이름</p></div>
+            
+        </div>
+
+        <!-- Sub parameters -->
+        
+    </li>
+    
+    <li>
+        <!-- parameter name -->
+        <div>
+            <strong>handlerToAttach</strong>
+            
+
+            
+        </div>
+        <!-- parameter type -->
+        
+        <div>Type: 
+<span class="param-type">function</span>
+
+</div>
+        
+    
+        <!-- Description -->
+        <div>
+            
+            <div class="description en"><p>The handler function of the event to be attached </p></div>
+            <div class="description ko"><p>등록할 이벤트의 핸들러 함수</p></div>
+            
+        </div>
+
+        <!-- Sub parameters -->
+        
+    </li>
+    
+</ul>
+    
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Type</th>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+        <tr>
+            
+            <td class="type">
+            
+                    	
+                    	eg.Component
+                    	
+                        
+                    
+            </td>
+            <td class="description last">
+                
+                <div class="en">An instance of a component itself</div>
+                <div class="ko"><p>컴포넌트 자신의 인스턴스</p></div>
+                
+
+                
+            </td>
+        </tr>
+    
+    </tbody>
+</table>
+
+    
+    
+    
+        <h5>Example</h5>
+        
+
+    
+    <pre class="prettyprint"><code><p>class Some extends eg.Component {<br>  hi() {<br>    alert(&quot;hi&quot;);<br>  }<br>  thing() {<br>    this.once(&quot;hi&quot;, this.hi);<br>  }<br>}</p>
+<p>var some = new Some();<br>some.thing();<br>some.trigger(&quot;hi&quot;);<br>// fire alert(&quot;hi&quot;);<br>some.trigger(&quot;hi&quot;);<br>// Nothing happens</p></code></pre>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+    <!-- if data.codepen -->
+</dl>
+
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer inherited">
+        <h4 class="name" id="option">
+            
+                <span class="inherited"><a href="eg.Component.html#option">inherited</a></span>
+            
+            option<span class="signature">(key, <span class="optional">value</span>)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{eg.Component|Object}</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="node_modules_@egjs_component_src_component.js.html">component.js</a>, <a href="node_modules_@egjs_component_src_component.js.html#line44">line 44</a>
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+	<div class="description en">
+		<p>Sets options in a component or returns them.</p>
+	</div>
+	
+	
+	<div class="description ko">
+		<p>컴포넌트에 옵션을 설정하거나 옵션을 반환한다</p>
+	</div>
+	
+
+    
+    
+    
+    
+    
+        
+
+<ul class="parameters">
+    
+    <li>
+        <!-- parameter name -->
+        <div>
+            <strong>key</strong>
+            
+
+            
+                
+                
+                    
+                
+            
+        </div>
+        <!-- parameter type -->
+        
+        <div>Type: 
+<span class="param-type">String</span>
+
+</div>
+        
+    
+        <!-- Description -->
+        <div>
+            
+            <div class="description en"><p>The key of the option</p></div>
+            <div class="description ko"><p>옵션의 키</p></div>
+            
+        </div>
+
+        <!-- Sub parameters -->
+        
+    </li>
+    
+    <li>
+        <!-- parameter name -->
+        <div>
+            <strong>value</strong>
+            
+
+            
+                
+                    <span class="optional">optional</span>
+                
+                
+                    
+                
+            
+        </div>
+        <!-- parameter type -->
+        
+        <div>Type: 
+<span class="param-type">Object</span>
+
+</div>
+        
+    
+        <!-- Description -->
+        <div>
+            
+            <div class="description en"><p>The option value that corresponds to a given key </p></div>
+            <div class="description ko"><p>키에 해당하는 옵션값</p></div>
+            
+        </div>
+
+        <!-- Sub parameters -->
+        
+    </li>
+    
+</ul>
+    
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Type</th>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+        <tr>
+            
+            <td class="type">
+            
+                    	
+                    	eg.Component
+                    	
+                         | 
+                    
+                    	
+                        Object
+                        
+                        
+                    
+            </td>
+            <td class="description last">
+                
+                <div class="en">An instance, an option value, or an option object of a component itself.<br>- If both key and value are used to set an option, it returns an instance of a component itself.<br>- If only a key is specified for the parameter, it returns the option value corresponding to a given key.<br>- If nothing is specified, it returns an option object. </div>
+                <div class="ko"><p>컴포넌트 자신의 인스턴스나 옵션값, 옵션 객체.<br>- 키와 값으로 옵션을 설정하면 컴포넌트 자신의 인스턴스를 반환한다.<br>- 파라미터에 키만 설정하면 키에 해당하는 옵션값을 반환한다.<br>- 파라미터에 아무것도 설정하지 않으면 옵션 객체를 반환한다.</p></div>
+                
+
+                
+            </td>
+        </tr>
+    
+    </tbody>
+</table>
+
+    
+    
+    
+        <h5>Example</h5>
+        
+
+    
+    <pre class="prettyprint"><code><p>class Some extends eg.Component {<br>}</p>
+<p>const some = new Some({<br>  &quot;foo&quot;: 1,<br>  &quot;bar&quot;: 2<br>});</p>
+<p>some.option(&quot;foo&quot;); // return 1<br>some.option(&quot;foo&quot;,3); // return some instance<br>some.option(); // return options object.<br>some.option({<br>  &quot;foo&quot; : 10,<br>  &quot;bar&quot; : 20,<br>  &quot;baz&quot; : 30<br>}); // return some instance.</p></code></pre>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+    <!-- if data.codepen -->
+</dl>
+
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="refresh">
+            
+            refresh<span class="signature">()</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="eg.Visible.html">eg.Visible</a>}</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="src_Visible.js.html">Visible.js</a>, <a href="src_Visible.js.html#line81">line 81</a>
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+	<div class="description en">
+		<p>Updates the list of elements where the visibility property is to be checked</p>
+	</div>
+	
+	
+	<div class="description ko">
+		<p>visibility 속성을 검사할 엘리먼트의 목록을 갱신한다</p>
+	</div>
+	
+
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Type</th>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+        <tr>
+            
+            <td class="type">
+            
+                    	
+                        <a href="eg.Visible.html">eg.Visible</a>
+                        
+                        
+                    
+            </td>
+            <td class="description last">
+                
+                <div class="en">An instance of a module itself</div>
+                <div class="ko"><p>모듈 자신의 인스턴스</p></div>
+                
+
+                
+            </td>
+        </tr>
+    
+    </tbody>
+</table>
+
+    
+    
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+    <!-- if data.codepen -->
+</dl>
+
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer inherited">
+        <h4 class="name" id="trigger">
+            
+                <span class="inherited"><a href="eg.Component.html#trigger">inherited</a></span>
+            
+            trigger<span class="signature">(eventName, customEvent)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{Boolean}</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="node_modules_@egjs_component_src_component.js.html">component.js</a>, <a href="node_modules_@egjs_component_src_component.js.html#line82">line 82</a>
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+	<div class="description en">
+		<p>Triggers a custom event.</p>
+	</div>
+	
+	
+	<div class="description ko">
+		<p>커스텀 이벤트를 발생시킨다</p>
+	</div>
+	
+
+    
+    
+    
+    
+    
+        
+
+<ul class="parameters">
+    
+    <li>
+        <!-- parameter name -->
+        <div>
+            <strong>eventName</strong>
+            
+
+            
+        </div>
+        <!-- parameter type -->
+        
+        <div>Type: 
+<span class="param-type">String</span>
+
+</div>
+        
+    
+        <!-- Description -->
+        <div>
+            
+            <div class="description en"><p>The name of the custom event to be triggered </p></div>
+            <div class="description ko"><p>발생할 커스텀 이벤트의 이름</p></div>
+            
+        </div>
+
+        <!-- Sub parameters -->
+        
+    </li>
+    
+    <li>
+        <!-- parameter name -->
+        <div>
+            <strong>customEvent</strong>
+            
+
+            
+        </div>
+        <!-- parameter type -->
+        
+        <div>Type: 
+<span class="param-type">Object</span>
+
+</div>
+        
+    
+        <!-- Description -->
+        <div>
+            
+            <div class="description en"><p>Event data to be sent when triggering a custom event </p></div>
+            <div class="description ko"><p>커스텀 이벤트가 발생할 때 전달할 데이터</p></div>
+            
+        </div>
+
+        <!-- Sub parameters -->
+        
+    </li>
+    
+</ul>
+    
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Type</th>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+        <tr>
+            
+            <td class="type">
+            
+                    	
+                        Boolean
+                        
+                        
+                    
+            </td>
+            <td class="description last">
+                
+                <div class="en">Indicates whether the event has occurred. If the stop() method is called by a custom event handler, it will return false and prevent the event from occurring. </div>
+                <div class="ko"><p>이벤트 발생 여부. 커스텀 이벤트 핸들러에서 stop() 메서드를 호출하면 'false'를 반환하고 이벤트 발생을 중단한다.</p></div>
+                
+
+                
+            </td>
+        </tr>
+    
+    </tbody>
+</table>
+
+    
+    
+    
+        <h5>Example</h5>
+        
+
+    
+    <pre class="prettyprint"><code><p>class Some extends eg.Component {<br>  some(){<br>    this.trigger(&quot;hi&quot;);// fire hi event.<br>  }<br>}</p></code></pre>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+    <!-- if data.codepen -->
+</dl>
+
+</dd>
+
+        </dl>
+    
+
+    
+
+    
+        <h3 class="subsection-title">Events</h3>
+
+        <dl>
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="event:change">
+            
+            change
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="src_Visible.js.html">Visible.js</a>, <a href="src_Visible.js.html#line221">line 221</a>
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+	<div class="description en">
+		<p>This event is fired when the event is compared with the last verified one and there is an element of which the visibility property has changed.</p>
+	</div>
+	
+	
+	<div class="description ko">
+		<p>마지막으로 확인한 결과와 비교해 visibility 속성이 변경된 엘리먼트가 있을 때 발생하는 이벤트</p>
+	</div>
+	
+
+    
+    
+    
+    
+    
+        
+
+<ul class="parameters">
+    
+    <li>
+        <!-- parameter name -->
+        <div>
+            <strong>visible</strong>
+            
+
+            
+        </div>
+        <!-- parameter type -->
+        
+        <div>Type: 
+<span class="param-type">Array</span>
+
+</div>
+        
+    
+        <!-- Description -->
+        <div>
+            
+            <div class="description en"><p>Visible elements  (the element type is <code>HTMLElement</code>) </p></div>
+            <div class="description ko"><p>보이게 된 엘리먼트들</p></div>
+            
+        </div>
+
+        <!-- Sub parameters -->
+        
+    </li>
+    
+    <li>
+        <!-- parameter name -->
+        <div>
+            <strong>invisible</strong>
+            
+
+            
+        </div>
+        <!-- parameter type -->
+        
+        <div>Type: 
+<span class="param-type">Array</span>
+
+</div>
+        
+    
+        <!-- Description -->
+        <div>
+            
+            <div class="description en"><p>Invisible elements  (the element type is <code>HTMLElement</code>) </p></div>
+            <div class="description ko"><p>안 보이게 된 엘리먼트들</p></div>
+            
+        </div>
+
+        <!-- Sub parameters -->
+        
+    </li>
+    
+</ul>
+    
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+    <!-- if data.codepen -->
+</dl>
+
+</dd>
+
+        </dl>
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+        
+        <!-- disqus code -->
+        <div id="disqus_thread"></div>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        <!-- // disqus code -->
+        
+
+        <footer>
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Thu Jun 29 2017 17:11:16 GMT+0900 (KST)
+        </footer>
+    </div>
+</div>
+<script>prettyPrint();</script>
+<script src="scripts/main.js"></script>
+</body>
+</html>

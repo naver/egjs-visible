@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>egjs-visible</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700">
+    <link rel="stylesheet" href="./common/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./common/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./common/css/page.css">
+    <link rel="stylesheet" href="./common/css/monokai.css">
+    <script src="./common/js/jquery-2.2.4.js"></script>
+    <script src="./common/js/bootstrap.min.js"></script>
+</head>
+
+	<link rel="stylesheet" href="assets/css/demo.css">
+
+
+	<script src="release/latest/dist/visible.pkgd.min.js"></script>
+
+<script>
+	window.LIBLINK = [];
+	
+	window.LIBLINK.push(window.location.href.replace("/index.html", "/")
+            .replace("/gallery.html", "/") + "release/latest/dist/visible.pkgd.min.js");
+	
+</script>
+<body>
+<link rel="stylesheet" href="./common/css/gallery.css">
+<div>
+	<section id="docs" class="docs section demos">
+		<div class="container">
+			<div class="docs-inner">
+				
+				<h3 id="basic">Basic</h3>
+
+<div class="demobox" codepen="demo">
+  <div class="wrap">
+    <div class="scroller">
+      <div class="card item"></div>
+      <div class="card item"></div>
+      <div class="card item"></div>
+      <div class="card item"></div>
+      <div class="card item"></div>
+      <div class="card item"></div>
+      <div class="card item"></div>
+      <div class="card item"></div>
+      <div class="card item"></div>
+      <div class="card item"></div>
+      <div class="card item"></div>
+      <div class="card item"></div>
+      <div class="card item"></div>
+      <div class="card item"></div>
+      <div class="card item"></div>
+      <div class="card item"></div>
+      <div class="card item"></div>
+      <div class="card item"></div>
+      <div class="card item"></div>
+      <div class="card item"></div>
+      <div class="card item"></div>
+      <div class="card item"></div>
+      <div class="card item"></div>
+      <div class="card item"></div>
+      <div class="card item"></div>
+      <div class="card item"></div>
+      <div class="card item"></div>
+    </div>
+
+    <div class="control">
+      <div id="effeciveViewportIndicator"></div>
+      <label for="expandSize">expandSize : <span id="expandSize_value">0</span></label>
+      <input id="expandSizeInput" type="range" name="expandSize" min="-230" max="30" step="1" value="0" /><br />
+      <label for="effeciveViewportIndicator">Show Effective Viewport Area</label>
+      <input id="effeciveViewportToggle" type="checkbox" name="effeciveViewportIndicator" />
+      <div id="log"></div>
+
+    </div>
+  </div>
+</div>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">visibleView</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">eg</span><span class="p">.</span><span class="nx">Visible</span><span class="p">(</span><span class="s1">'.scroller'</span><span class="p">,{</span>
+    <span class="na">targetClass</span> <span class="p">:</span> <span class="s2">"card"</span><span class="p">,</span>
+    <span class="na">expandSize</span> <span class="p">:</span> <span class="mi">0</span>
+<span class="p">}).</span><span class="nx">on</span><span class="p">(</span><span class="s2">"change"</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">visible</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s2">"visible"</span><span class="p">);</span>
+    <span class="nx">$</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">invisible</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="s2">"visible"</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">visibleView</span><span class="p">.</span><span class="nx">check</span><span class="p">();</span>    
+
+<span class="nx">$</span><span class="p">(</span><span class="s1">'.scroller'</span><span class="p">).</span><span class="nx">scroll</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">visibleView</span><span class="p">.</span><span class="nx">check</span><span class="p">();</span>    
+<span class="p">});</span>
+</code></pre>
+</div>
+
+			</div>
+		</div>
+	</section>
+</div>
+
+	<script src="assets/js/demo.js"></script>
+
+<script>
+$("h3[id]").append(function() {
+	return "<a href='./index.html#" + this.id + "' target='_blank' class='more'>" +
+		'<span class="moreBtn">more</span></a>';
+});
+</script>
+</body>
+</html>
