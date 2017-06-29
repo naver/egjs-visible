@@ -50,7 +50,7 @@ The following are the supported browsers.
 
 |Internet Explorer|Chrome|Firefox|Safari|iOS|Android|
 |---|---|---|---|---|---|
-|||||||
+|7+|Latest|Latest|Latest|7+|2.1+(except 3.x)|
 
 ## Dependency
 
