@@ -22,3 +22,9 @@ jsdoc.json
 #editor settings
 .idea
 .editorconfig
+
+coverage/
+node_modules/
+.github
+.babelrc
+mocha.opts
