@@ -5,7 +5,7 @@
  * @egjs/visible JavaScript library
  * 
  * 
- * @version 2.0.0-rc.2
+ * @version 2.0.0-rc
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -377,10 +377,10 @@ var _Visible2 = _interopRequireDefault(_Visible);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_Visible2.default.VERSION = "2.0.0-rc.2"; /**
-                                           * Copyright (c) NAVER Corp.
-                                           * egjs-visible projects are licensed under the MIT license
-                                           */
+_Visible2.default.VERSION = "2.0.0-rc"; /**
+                                         * Copyright (c) NAVER Corp.
+                                         * egjs-visible projects are licensed under the MIT license
+                                         */
 
 module.exports = _Visible2.default;
 

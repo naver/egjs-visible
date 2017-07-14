@@ -5,7 +5,7 @@
  * @egjs/visible JavaScript library
  * 
  * 
- * @version 2.0.0-rc.2
+ * @version 2.0.0-rc
  * 
  * All-in-one packaged file for ease use of '@egjs/visible' with below dependencies.
  * NOTE: This is not an official distribution file and is only for user convenience.
@@ -381,10 +381,10 @@ var _Visible2 = _interopRequireDefault(_Visible);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_Visible2.default.VERSION = "2.0.0-rc.2"; /**
-                                           * Copyright (c) NAVER Corp.
-                                           * egjs-visible projects are licensed under the MIT license
-                                           */
+_Visible2.default.VERSION = "2.0.0-rc"; /**
+                                         * Copyright (c) NAVER Corp.
+                                         * egjs-visible projects are licensed under the MIT license
+                                         */
 
 module.exports = _Visible2.default;
 
