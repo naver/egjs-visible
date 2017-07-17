@@ -106,7 +106,7 @@ var _component = __webpack_require__(2);
 
 var _component2 = _interopRequireDefault(_component);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -363,9 +363,9 @@ var Visible = function (_Component) {
 	};
 
 	return Visible;
-}(_component2.default);
+}(_component2["default"]);
 
-exports.default = Visible;
+exports["default"] = Visible;
 module.exports = exports["default"];
 
 /***/ }),
@@ -379,14 +379,14 @@ var _Visible = __webpack_require__(0);
 
 var _Visible2 = _interopRequireDefault(_Visible);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-_Visible2.default.VERSION = "2.0.0-rc"; /**
-                                         * Copyright (c) NAVER Corp.
-                                         * egjs-visible projects are licensed under the MIT license
-                                         */
+_Visible2["default"].VERSION = "2.0.0-rc"; /**
+                                            * Copyright (c) NAVER Corp.
+                                            * egjs-visible projects are licensed under the MIT license
+                                            */
 
-module.exports = _Visible2.default;
+module.exports = _Visible2["default"];
 
 /***/ }),
 /* 2 */
