@@ -4,14 +4,30 @@
  */
 import Component from "@egjs/component";
 
+// IE8
+// https://stackoverflow.com/questions/43216659/babel-ie8-inherit-issue-with-object-create
+/* eslint-disable */
+if (typeof Object.create !== "function") {
+	Object.create = function (o, properties) {
+		if (typeof o !== "object" && typeof o !== "function") {
+			throw new TypeError("Object prototype may only be an Object: " + o);
+		} else if (o === null) {
+			throw new Error("This browser's implementation of Object.create is a shim and doesn't support 'null' as the first argument.");
+		}
+		function F() {}
+		F.prototype = o;
+		return new F();
+	};
+}
+/* eslint-enable */
+
 /**
  * A Class used to check whether an element is visible in the base element or viewport.
  * @ko 엘리먼트가 기준 엘리먼트나 뷰포트 안에 보이는지 확인하는 클래스
  * @alias eg.Visible
  * @extends eg.Component
  *
- * @support {"ie": "7+", "ch" : "latest", "ff" : "latest",  "sf" : "latest", "edge" : "latest", "ios" : "7+", "an" : "2.1+ (except 3.x)"}
- * @codepen {"id":"WbWzqq", "ko":"Visible 기본 예제", "en":"Visible basic example", "collectionId":"Ayrabj", "height" : 403}
+ * @support {"ie": "8+", "ch" : "latest", "ff" : "latest",  "sf" : "latest", "edge" : "latest", "ios" : "7+", "an" : "2.1+ (except 3.x)"}
  */
 class Visible extends Component {
 	/**
@@ -30,7 +46,8 @@ class Visible extends Component {
 
 		if (element === undefined) {
 			this._wrapper = document;
-		} if (typeof element === "object") {
+		}
+		if (typeof element === "object") {
 			this._wrapper = element;
 		} else if (typeof element === "string") {
 			this._wrapper = document.querySelector(element);
@@ -80,13 +97,18 @@ class Visible extends Component {
 	 */
 	refresh() {
 		if (this._supportElementsByClassName) {
-			this._targets = this._wrapper
-				.getElementsByClassName(this.options.targetClass);
-			this.refresh = () => this;
+			this._targets = this._wrapper.getElementsByClassName(this.options.targetClass);
+			this.refresh = function() {
+				return this;
+			};
 		} else {
-			this.refresh = () => {
-				this._targets =
-					this._wrapper.querySelector(this.option.targetClass);
+			this.refresh = function() {
+				const targets = this._wrapper.querySelectorAll(`.${this.options.targetClass}`);
+
+				this._targets = [];
+				for (let i = 0; i < targets.length; i++) {
+					this._targets.push(targets[i]);
+				}
 				return this;
 			};
 		}
@@ -150,7 +172,7 @@ class Visible extends Component {
 			this._reviseElements = () => true;
 		} else {
 			this._reviseElements = (target, i) => {
-				if (Visible._hasClass(params[0], this.options.targetClass)) {
+				if (!Visible._hasClass(target, this.options.targetClass)) {
 					target.__VISIBLE__ = null;
 					this._targets.splice(i, 1);
 					return false;
@@ -181,7 +203,8 @@ class Visible extends Component {
 			right: rect.right + expandSize,
 		};
 
-		for (i = this._targets.length - 1; (target = this._targets[i]); i--) {
+		for (i = this._targets.length - 1;
+			(target = this._targets[i]); i--) {
 			targetArea = target.getBoundingClientRect();
 
 			if (targetArea.width === 0 && targetArea.height === 0) {

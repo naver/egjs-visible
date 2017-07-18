@@ -94,9 +94,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 exports.__esModule = true;
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; /**
+                                                                                                                                                                                                                                                                               * Copyright (c) NAVER Corp.
+                                                                                                                                                                                                                                                                               * egjs-visible projects are licensed under the MIT license
+                                                                                                                                                                                                                                                                               */
+
 
 var _component = __webpack_require__(2);
 
@@ -108,11 +112,24 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Copyright (c) NAVER Corp.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * egjs-visible projects are licensed under the MIT license
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+// IE8
+// https://stackoverflow.com/questions/43216659/babel-ie8-inherit-issue-with-object-create
+/* eslint-disable */
+if (typeof Object.create !== "function") {
+	Object.create = function (o, properties) {
+		if ((typeof o === "undefined" ? "undefined" : _typeof(o)) !== "object" && typeof o !== "function") {
+			throw new TypeError("Object prototype may only be an Object: " + o);
+		} else if (o === null) {
+			throw new Error("This browser's implementation of Object.create is a shim and doesn't support 'null' as the first argument.");
+		}
+		function F() {}
+		F.prototype = o;
+		return new F();
+	};
+}
+/* eslint-enable */
 
 /**
  * A Class used to check whether an element is visible in the base element or viewport.
@@ -120,9 +137,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @alias eg.Visible
  * @extends eg.Component
  *
- * @support {"ie": "7+", "ch" : "latest", "ff" : "latest",  "sf" : "latest", "edge" : "latest", "ios" : "7+", "an" : "2.1+ (except 3.x)"}
- * @codepen {"id":"WbWzqq", "ko":"Visible 기본 예제", "en":"Visible basic example", "collectionId":"Ayrabj", "height" : 403}
+ * @support {"ie": "8+", "ch" : "latest", "ff" : "latest",  "sf" : "latest", "edge" : "latest", "ios" : "7+", "an" : "2.1+ (except 3.x)"}
  */
+
 var Visible = function (_Component) {
 	_inherits(Visible, _Component);
 
@@ -145,7 +162,8 @@ var Visible = function (_Component) {
 
 		if (element === undefined) {
 			_this._wrapper = document;
-		}if ((typeof element === "undefined" ? "undefined" : _typeof(element)) === "object") {
+		}
+		if ((typeof element === "undefined" ? "undefined" : _typeof(element)) === "object") {
 			_this._wrapper = element;
 		} else if (typeof element === "string") {
 			_this._wrapper = document.querySelector(element);
@@ -197,17 +215,20 @@ var Visible = function (_Component) {
 
 
 	Visible.prototype.refresh = function refresh() {
-		var _this2 = this;
-
 		if (this._supportElementsByClassName) {
 			this._targets = this._wrapper.getElementsByClassName(this.options.targetClass);
 			this.refresh = function () {
-				return _this2;
+				return this;
 			};
 		} else {
 			this.refresh = function () {
-				_this2._targets = _this2._wrapper.querySelector(_this2.option.targetClass);
-				return _this2;
+				var targets = this._wrapper.querySelectorAll("." + this.options.targetClass);
+
+				this._targets = [];
+				for (var i = 0; i < targets.length; i++) {
+					this._targets.push(targets[i]);
+				}
+				return this;
 			};
 		}
 		return this.refresh();
@@ -223,7 +244,7 @@ var Visible = function (_Component) {
 
 
 	Visible.prototype.check = function check() {
-		var _this3 = this;
+		var _this2 = this;
 
 		var delay = arguments.length <= 0 ? undefined : arguments[0];
 		var containment = arguments.length <= 1 ? undefined : arguments[1];
@@ -246,8 +267,8 @@ var Visible = function (_Component) {
 			this._check(containment);
 		} else {
 			this._timer = setTimeout(function () {
-				_this3._check(containment);
-				_this3._timer = null;
+				_this2._check(containment);
+				_this2._timer = null;
 			}, delay);
 		}
 		return this;
@@ -268,11 +289,7 @@ var Visible = function (_Component) {
 	};
 
 	Visible.prototype._reviseElements = function _reviseElements() {
-		var _this4 = this;
-
-		for (var _len = arguments.length, params = Array(_len), _key = 0; _key < _len; _key++) {
-			params[_key] = arguments[_key];
-		}
+		var _this3 = this;
 
 		if (this._supportElementsByClassName) {
 			this._reviseElements = function () {
@@ -280,15 +297,15 @@ var Visible = function (_Component) {
 			};
 		} else {
 			this._reviseElements = function (target, i) {
-				if (Visible._hasClass(params[0], _this4.options.targetClass)) {
+				if (!Visible._hasClass(target, _this3.options.targetClass)) {
 					target.__VISIBLE__ = null;
-					_this4._targets.splice(i, 1);
+					_this3._targets.splice(i, 1);
 					return false;
 				}
 				return true;
 			};
 		}
-		return this._reviseElements.apply(this, params);
+		return this._reviseElements.apply(this, arguments);
 	};
 
 	Visible.prototype._check = function _check(containment) {

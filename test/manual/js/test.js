@@ -24,6 +24,7 @@ $(function() {
 	$(window).scroll(function() {
 		visibleView.check(200);
 	});
+
 	if(window.IScroll) {
 		var visible = new eg.Visible("#view",{
 			targetClass : "check_visible",
