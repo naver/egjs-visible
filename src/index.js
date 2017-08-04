@@ -4,5 +4,4 @@
  */
 import Visible from "./Visible";
 
-Visible.VERSION = "#__VERSION__#";
 module.exports = Visible;

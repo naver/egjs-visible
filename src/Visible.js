@@ -262,4 +262,5 @@ class Visible extends Component {
 	}
 }
 
+Visible.VERSION = "#__VERSION__#";
 export default Visible;
