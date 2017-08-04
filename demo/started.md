@@ -7,7 +7,26 @@ IE 7+, latest of Chrome/FF/Safari, iOS 7+ and Android 2.1+ (except 3.x)
 #### Set up your HTML
 
 ``` html
-<div>
+<ul id="contents">
+  <li class="check_visible">
+    <div>test1</div>
+  </li>
+  <li class="check_visible">
+    <div>test2</div>
+  </li>
+  <li class="check_visible">
+    <div>test3</div>
+  </li>
+  <li class="check_visible">
+    <div>test4</div>
+  </li>
+  <li class="check_visible">
+    <div>test5</div>
+  </li>
+  <li class="check_visible">
+    <div>test6</div>
+  </li>
+</ul>
 ```
 
 #### Load files or import library
