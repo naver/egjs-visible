@@ -5,9 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic">
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700">
-    <link rel="stylesheet" href="./common/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Zilla+Slab:700" rel="stylesheet">    
     <link rel="stylesheet" href="./common/css/bootstrap.min.css">
     <link rel="stylesheet" href="./common/css/page.css">
     <link rel="stylesheet" href="./common/css/monokai.css">
@@ -49,61 +47,43 @@
 
     <!-- ******HEADER****** -->
     <header id="header" class="header">
-        <div class="container">
-            <a href="//naver.github.io/egjs">
-                <h1 class="logo pull-left"></h1>
-            </a><!--//logo-->
-            <nav id="main-nav" class="main-nav navbar-right" role="navigation">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="true">
-                        <img src="common/image/logo.svg">
-                    </button>
-                </div><!--//navbar-header-->
-                 <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a class="page-scroll" href="//github.com/naver/egjs-visible" target="_blank">Github</a>
-                        </li>
-                        <li>
-                            <a class="page-scroll" href="release/latest/doc" target="_blank">API Document</a>
-                        </li>
-                        <li>
-                            <a class="page-scroll" href="//github.com/naver/egjs-visible/releases" target="_blank">v2.0.0</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav><!--//main-nav-->
+            <div class="container">
+                <a href="//naver.github.io/egjs">
+                    <h1 class="logo pull-left"></h1>
+                </a><!--//logo-->
+            </div>
+        </header><!--//header-->
+    
+    
+<section id="promo" class="promo section">
+    <div class="container">
+        <div class="hero-image" style="background-image: url(//naver.github.io/egjs/img/Visible.png)">
         </div>
-    </header><!--//header-->
-
-<section id="promo" class="promo section offset-header" style="padding-top:90px">
-    <div class="container text-center">
-        <h2 class="title"><span class="highlight">Visible</span></h2>
-        <p class="intro">A class that checks if an element is visible in the base element or viewport.</p>
-        <div class="btns">
-            <!--<a class="btn btn-cta-primary" href="release/latest/doc" target="_blank">Github</a>-->
-            <a class="btn btn-cta-primary" href="release/latest/doc" target="_blank">API Document</a>
-            <a class="btn btn-cta-primary" href="//github.com/naver/egjs-visible/releases" target="_blank">v2.0.0</a>
-        </div>
-    </div>
-    <div class="social-media">
-        <div class="social-media-inner container text-center">
-            <ul class="list-inline">
-                <li class="facebook-like">
-                     <div class="fb-like" data-href="//naver.github.io/egjs-visible/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
-                </li>
-                <li class="github-fork"><iframe src="//ghbtns.com/github-btn.html?user=naver&repo=egjs-visible&type=fork" allowtransparency="true" frameborder="0" scrolling="0" width="53" height="20"></iframe></li>
-                <li class="github-star"><iframe src="//ghbtns.com/github-btn.html?user=naver&repo=egjs-visible&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe></li>
-            </ul>
-        </div>
+        <h2 class="title">
+            <span class="highlight">Visible</span><a href="https://github.com/naver/egjs-visible/releases/tag/2.0.0-snapshot"><span class="version">v2.0.0-snapshot</span></a>
+        </h2>
+        <p class="intro">A class that checks if an element is visible in the base element or viewport.<br/>
+            <span class="hashtag">#visibility</span>
+        </p>
     </div>
 </section>
 <div>
-	<section id="about" class="docs section">
+	<section id="index" class="section">
+			<div class="container">
+				<div class="docs-inner">
+					<p class="text-center">
+						<a href="#getting-started">Getting Started </a>/ 
+						<a href="#demos"> Demos </a>/
+						<a target="_blank" href="//naver.github.io/egjs-visible/release/latest/doc/"> Documentation </a>/ 
+						<a target="_blank" href="//github.com/naver/egjs-visible"> Source </a>
+					</p>
+				</div>
+			</div>
+		</section>
+	<section id="getting-started" class="docs section">
 		<div class="container">
 			<div class="docs-inner">
-				<h2 class="title text-center">Get Started</h2>
+				<h2 class="title text-center">Getting Started</h2>
 				
 				<h3 id="browser-support">Browser support</h3>
 <p>IE 7+, latest of Chrome/FF/Safari, iOS 7+ and Android 2.1+ (except 3.x)</p>
@@ -112,7 +92,26 @@
 
 <h4 id="set-up-your-html">Set up your HTML</h4>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;div&gt;</span>
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">"contents"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"check_visible"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div&gt;</span>test1<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"check_visible"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div&gt;</span>test2<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"check_visible"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div&gt;</span>test3<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"check_visible"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div&gt;</span>test4<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"check_visible"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div&gt;</span>test5<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"check_visible"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div&gt;</span>test6<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>
+<span class="nt">&lt;/ul&gt;</span>
 </code></pre>
 </div>
 
@@ -153,7 +152,7 @@
 			</div>
 		</div>
 	</section>
-	<section id="docs" class="docs section demos">
+	<section id="demos" class="docs section demos">
 		<div class="container">
 			<div class="docs-inner">
 				<h2 class="title text-center">Demos</h2>
@@ -204,18 +203,61 @@
   </div>
 </div>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">visibleView</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">eg</span><span class="p">.</span><span class="nx">Visible</span><span class="p">(</span><span class="s1">'.scroller'</span><span class="p">,{</span>
-    <span class="na">targetClass</span> <span class="p">:</span> <span class="s2">"card"</span><span class="p">,</span>
-    <span class="na">expandSize</span> <span class="p">:</span> <span class="mi">0</span>
+<h4 id="html">html</h4>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"wrap"</span> <span class="na">codepen=</span><span class="s">"visible"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"scroller"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card item"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card item"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card item"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card item"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card item"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card item"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card item"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card item"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card item"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card item"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card item"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card item"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card item"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card item"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card item"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card item"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card item"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card item"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card item"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card item"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card item"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card item"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card item"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card item"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card item"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card item"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card item"</span><span class="nt">&gt;&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre>
+</div>
+
+<h4 id="js">JS</h4>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// Create eg.Visible instance</span>
+<span class="kd">var</span> <span class="nx">visibleView</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">eg</span><span class="p">.</span><span class="nx">Visible</span><span class="p">(</span><span class="s1">'.scroller'</span><span class="p">,{</span>
+  <span class="na">targetClass</span> <span class="p">:</span> <span class="s2">"card"</span><span class="p">,</span>
+  <span class="na">expandSize</span> <span class="p">:</span> <span class="mi">0</span>
 <span class="p">}).</span><span class="nx">on</span><span class="p">(</span><span class="s2">"change"</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">$</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">visible</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s2">"visible"</span><span class="p">);</span>
-    <span class="nx">$</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">invisible</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="s2">"visible"</span><span class="p">);</span>
+  <span class="c1">// Add change event handler</span>
+  <span class="nx">$</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">visible</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s2">"visible"</span><span class="p">);</span>
+  <span class="nx">$</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">invisible</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="s2">"visible"</span><span class="p">);</span>
+  <span class="nx">handler</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span>
 <span class="p">});</span>
 
+<span class="c1">// Call "check" method whenever you want to check visibility change of the elements compared with last time you call "check" method.</span>
 <span class="nx">visibleView</span><span class="p">.</span><span class="nx">check</span><span class="p">();</span>    
 
 <span class="nx">$</span><span class="p">(</span><span class="s1">'.scroller'</span><span class="p">).</span><span class="nx">scroll</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">visibleView</span><span class="p">.</span><span class="nx">check</span><span class="p">();</span>    
+  <span class="c1">// When you call "check" mehtod and if there is a change, "change" event will trigger.</span>
+  <span class="nx">visibleView</span><span class="p">.</span><span class="nx">check</span><span class="p">();</span>    
 <span class="p">});</span>
 </code></pre>
 </div>
@@ -225,12 +267,20 @@
 	</section>
 </div>
     <!-- ******FOOTER****** -->
-    <footer class="footer">
-        <div class="container text-center">
-            <small class="copyright"><img style="width:40px;" src="common/image/type_white.svg"/> by <a href="//navercorp.com/" target="_blank">© NAVER Corp.</a></small>
-        </div><!--//container-->
-    </footer><!--//footer-->
-
+    <footer>
+            <div id="footerContent">
+              <div class="left">
+                <ul>
+                    <li><a target="_blank" href="https://naver.github.io/">
+                        <img class="naver_opensource" src="https://naver.github.io/egjs/img/n_opensource.png" />
+                        </a></li>
+                    <li><a target="_blank" href="https://naver.github.io/egjs/">egjs</a>
+                    </li>
+                    <li><a target="_blank" href="https://naver.github.io/billboard.js/">billboard.js</a></li>
+                </ul>
+              </div>
+            </div>
+          </footer>
     <!-- Javascript -->
     <script type="text/javascript" src="./common/js/app.js"></script>
     <script>
