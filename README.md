@@ -86,7 +86,7 @@ $ npm install
 
 #### 3. Build
 
-Use npm script to build billboard.js
+Use npm script to build eg.Visible
 
 ```bash
 # Run webpack-dev-server for development
