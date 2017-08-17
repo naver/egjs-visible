@@ -5,7 +5,7 @@
  * @egjs/visible JavaScript library
  * 
  * 
- * @version 2.0.0-snapshot
+ * @version 2.0.0
  * 
  * All-in-one packaged file for ease use of '@egjs/visible' with below dependencies.
  * NOTE: This is not an official distribution file and is only for user convenience.
@@ -397,7 +397,7 @@ var Visible = function (_Component) {
 	return Visible;
 }(_component2["default"]);
 
-Visible.VERSION = "2.0.0-snapshot";
+Visible.VERSION = "2.0.0";
 exports["default"] = Visible;
 module.exports = exports["default"];
 
