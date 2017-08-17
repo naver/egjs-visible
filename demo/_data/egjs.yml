@@ -3,6 +3,7 @@ home: //naver.github.io/egjs
 desc: A class that checks if an element is visible in the base element or viewport.
 dist:
 - release/latest/dist/visible.pkgd.min.js
+hashtag: "#visibility"
 GA: UA-70842526-13
 github:
   user: naver
