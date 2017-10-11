@@ -16,7 +16,7 @@ export function toArray(nodes) {
  *  when string given is as HTML tag, then create element
  *  otherwise it returns selected elements
  * @param {Boolean} multi
- * @returns {HTMLElement}
+ * @returns {HTMLElement|HTMLElement[]|undefined}
  */
 export function $(param, multi = false) {
 	let el;
