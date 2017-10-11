@@ -122,6 +122,7 @@ describe("iScroll", () => {
 		visible.on("change", e => {
 			e.visible.should.to.have.lengthOf(3);
 			e.invisible.should.to.have.lengthOf(3);
+			e.isTrusted.should.to.be.true;
 			done();
 		});
 
