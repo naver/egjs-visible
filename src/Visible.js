@@ -3,6 +3,7 @@
  * egjs-visible projects are licensed under the MIT license
  */
 import Component from "@egjs/component";
+import {$} from "./utils";
 
 // IE8
 // https://stackoverflow.com/questions/43216659/babel-ie8-inherit-issue-with-object-create
@@ -43,15 +44,7 @@ class Visible extends Component {
 			expandSize: 0,
 		};
 		Object.assign(this.options, options);
-
-		if (element === undefined) {
-			this._wrapper = document;
-		}
-		if (typeof element === "object") {
-			this._wrapper = element;
-		} else if (typeof element === "string") {
-			this._wrapper = document.querySelector(element);
-		}
+		this._wrapper = $(element) || document;
 
 		// this._wrapper is Element, or may be Window
 		if (this._wrapper.nodeType && this._wrapper.nodeType === 1) {
