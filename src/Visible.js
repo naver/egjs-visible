@@ -254,7 +254,7 @@ class Visible extends Component {
 		this.trigger("change", {
 			visible: visibles,
 			invisible: invisibles,
-			isTrusted: true, // eg.Visible event is called by 'check' method.
+			isTrusted: true, // This event is called by 'check' method.
 		});
 	}
 
