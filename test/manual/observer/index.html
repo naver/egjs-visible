@@ -1,16 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>egjs-visible</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-.check_visible{background:#ff0}
-pre {font-size: 13px;font-style:normal;line-height: 13px}
+	@import url(https://fonts.googleapis.com/css?family=Lato:300italic,700italic,300,700);
+	body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0;padding:0}
+	body{position:relative;background-color:#ececec;color:#000;-webkit-text-size-adjust:none}
+	ul {list-style:none; padding:0px;}
+	body {
+		font:14px/1.5 Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+		color:#777;
+		font-weight:300;
+	}
+	h1, h2, h3, h4, h5, h6 {
+		color:#222;
+	}
+	h1, h2, h3 {
+		line-height:1.1;
+	}
+	h1 {
+		font-size:28px;
+	}
+	h2 {
+		color:#393939;
+	}
+	h3, h4, h5, h6 {
+		color:#494949;
+	}
+	a {
+		color:#39c;
+		font-weight:400;
+		text-decoration:none;
+	}
+	a small {
+		font-size:11px;
+		color:#777;
+		margin-top:-0.6em;
+		display:block;
+	}
+	blockquote {
+		border-left:1px solid #e5e5e5;
+		margin:0;
+		padding:0 0 0 20px;
+		font-style:italic;
+	}
+	code, pre {
+		font-family:Monaco, Bitstream Vera Sans Mono, Lucida Console, Terminal;
+		color:#333;
+		font-size:12px;
+	}
+	pre {
+		padding:8px 15px;
+		background: #f8f8f8;
+		border-radius:5px;
+		border:1px solid #e5e5e5;
+		overflow-x: auto;
+	}
+	strong {
+		color:#222;
+		font-weight:700;
+	}
+	small {
+		font-size:11px;
+	}
+	hr {
+		border:0;
+		background:#e5e5e5;
+		height:1px;
+		margin:0 0 20px;
+	}
+	#view { height:200px; overflow:hidden; padding:0px; }
+	#view span { border:1px solid #aaa; padding:2px; border-radius:5px; }
+	#view .list {
+		float:left; width:100px; height:50px; border:1px solid #aaa; background-color:#eee;
+		margin:10px; text-align:center; font-size:2em;
+	}
+	#view .check_visible { background-color:#ff0; border-color:#bb0; }
+	#view .visible { background-color:#fc0; }
+	#content .list {
+		width:100%; height:50px;
+		background-color:#eee;
+		margin:5px; font-size:2em;
+	}
+	#content .check_visible { background-color:#CECEBD; border-color:#bb0; }
+	#content .visible { background-color:#BFDB9E; }
+	.ctrlbox {
+		position:fixed;
+		padding:20px;
+		background: #F2C61B;
+		right : 0px;
+		top : 0px;
+		z-index:2000;
+	}
+	.inline {
+		display:inline-block;
+	}
+	input {
+		width : 50px;
+	}
 </style>
-<div id="view"><div><pre>
-										<span class="check_visible">GNU GENERAL PUBLIC LICENSE</span>
-											 Version 3, 29 June 2007
+</head>
+<body>
+<div id="view">
+	<div>
+<pre>
+					<span class="check_visible">GNU GENERAL PUBLIC LICENSE</span>
+						 Version 3, 29 June 2007
 
  Copyright (C) 2007 Free Software Foundation, Inc. &lt;http://fsf.org/&gt;
- Everyone <span class="check_visible">is2</span> permitted to copy and d<span class="check_visible">isd</span>tribute verbatim copies
+ Everyone <span class="check_visible">is</span> permitted to copy and d<span class="check_visible">is</span>tribute verbatim copies
  of th<span class="check_visible">is</span> license document, but changing it <span class="check_visible">is</span> not allowed.
 
-														Preamble
+							Preamble
 
 	The GNU General Public License <span class="check_visible">is</span> a free, copyleft license for
 software and other kinds of works.
@@ -73,7 +177,7 @@ patents cannot be used to render the program non-free.
 	The prec<span class="check_visible">is</span>e terms and conditions for copying, d<span class="check_visible">is</span>tribution and
 modification follow.
 
-											 TERMS AND CONDITIONS
+						 TERMS AND CONDITIONS
 
 	0. Definitions.
 
@@ -155,4 +259,17 @@ Source.
 
 	The Corresponding Source for a work in source code form <span class="check_visible">is</span> that
 same work.
-	</pre></div></div>
+</pre>
+	</div>
+</div>
+
+<ul id="content"></ul>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/iScroll/5.2.0/iscroll.js"></script>
+<!-- <script src="../../node_modules/jquery/dist/jquery.min.js"></script> -->
+<!-- <script src="../../node_modules/iscroll/build/iscroll.js"></script> -->
+<!-- <script src="../../node_modules/@egjs/component/dist/component.js"></script> -->
+<script src="../../../dist/visible.pkgd.js"></script>
+<script src="js/test.js"></script>
+</body>
+</html>
