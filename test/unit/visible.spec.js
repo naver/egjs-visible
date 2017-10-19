@@ -208,7 +208,7 @@ describe("visible observe", () => {
 			let visibleItems, invisibleItems;
 
 			visible.observe();
-			expect(visible._observer).toBeTruthy();
+			expect(visible._observer).to.be.ok;
 
 			visible.on("change", e => {
 				e.visible.should.have.length.above(0);
