@@ -3,7 +3,7 @@
  * egjs-visible projects are licensed under the MIT license
  */
 import Component from "@egjs/component";
-import {$} from "./utils";
+import {$, addEvent, removeEvent} from "./utils";
 
 // IE8
 // https://stackoverflow.com/questions/43216659/babel-ie8-inherit-issue-with-object-create
@@ -55,6 +55,7 @@ class Visible extends Component {
 
 		this._targets = [];
 		this._timer = null;
+		this._supportObserver = !!window.IntersectionObserver;
 		this._supportElementsByClassName = (() => {
 			const dummy = document.createElement("div");
 
@@ -92,6 +93,7 @@ class Visible extends Component {
 		if (this._supportElementsByClassName) {
 			this._targets = this._wrapper.getElementsByClassName(this.options.targetClass);
 			this.refresh = function() {
+				this.refreshObserver();
 				return this;
 			};
 		} else {
@@ -102,6 +104,7 @@ class Visible extends Component {
 				for (let i = 0; i < targets.length; i++) {
 					this._targets.push(targets[i]);
 				}
+				this.refreshObserver();
 				return this;
 			};
 		}
@@ -135,9 +138,11 @@ class Visible extends Component {
 		clearTimeout(this._timer);
 		if (delay < 0) {
 			this._check(containment);
+			this._checkObserve();
 		} else {
 			this._timer = setTimeout(() => {
 				this._check(containment);
+				this._checkObserve();
 				this._timer = null;
 			}, delay);
 		}
@@ -178,13 +183,10 @@ class Visible extends Component {
 
 	_check(containment) {
 		const expandSize = parseInt(this.options.expandSize, 10);
-		const visibles = [];
-		const invisibles = [];
 
 		let i;
 		let target;
 		let targetArea;
-		let before;
 		let after;
 
 		// Error Fix: Cannot set property top of #<ClientRect> which has only a getter
@@ -204,35 +206,65 @@ class Visible extends Component {
 				continue;
 			}
 
-			if (this._reviseElements(target, i)) {
-				before = !!target.__VISIBLE__;
-
-				if (containment) {
-					after = !(
-						targetArea.top < area.top ||
-						targetArea.bottom > area.bottom ||
-						targetArea.right > area.right ||
-						targetArea.left < area.left
-					);
-					target.__VISIBLE__ = after;
-				} else {
-					after = !(
-						targetArea.bottom < area.top ||
-						area.bottom < targetArea.top ||
-						targetArea.right < area.left ||
-						area.right < targetArea.left
-					);
-					target.__VISIBLE__ = after;
-				}
-
-				if (before !== after) {
-					if (after) {
-						visibles.unshift(target);
-					} else {
-						invisibles.unshift(target);
-					}
-				}
+			if (!this._reviseElements(target, i)) {
+				continue;
 			}
+			if (containment) {
+				after = !(
+					targetArea.top < area.top ||
+					targetArea.bottom > area.bottom ||
+					targetArea.right > area.right ||
+					targetArea.left < area.left
+				);
+			} else {
+				after = !(
+					targetArea.bottom < area.top ||
+					area.bottom < targetArea.top ||
+					targetArea.right < area.left ||
+					area.right < targetArea.left
+				);
+			}
+			target.__OBSERVE__ = after;
+		}
+	}
+	checkObserve(delay = -1) {
+		if (this._timer) {
+			clearTimeout(this._timer);
+			this._timer = 0;
+		}
+		if (delay < 0) {
+			this._checkObserve();
+		} else {
+			this._timer = setTimeout(() => {
+				this._checkObserve();
+				this._timer = null;
+			}, delay);
+		}
+		return this;
+	}
+	_checkObserve() {
+		const targets = this._targets;
+		const length = targets.length;
+		const visibles = [];
+		const invisibles = [];
+
+		for (let i = 0; i < length; ++i) {
+			const target = targets[i];
+			const prev = target.__VISIBLE__;
+			const after = target.__OBSERVE__;
+
+			if (prev === after) {
+				continue;
+			}
+			if (after) {
+				visibles.push(target);
+			} else {
+				invisibles.push(target);
+			}
+			target.__VISIBLE__ = after;
+		}
+		if (visibles.length === 0 && invisibles.length === 0) {
+			return;
 		}
 		/**
 		 * This event is fired when the event is compared with the last verified one and there is an element of which the visibility property has changed.
@@ -250,9 +282,96 @@ class Visible extends Component {
 			isTrusted: true, // This event is called by 'check' method.
 		});
 	}
+	/**
+	 * Observe whether the visible of the target elements has changed. It trigger that change event on a component.
+	 * @ko 대상 엘리먼트의 가시성이 변경됐는지 관찰한다. change 이벤트를 발생한다.
+	 * @param {Number} [delay=-1] Delay time. It delay that change event trigger.<ko>지연시간. change 이벤트 발생을 지연한다.</ko>
+	 * @param {Boolean} [containment=false] Whether to check only elements that are completely contained within the reference area.<ko>기준 영역 안에 완전히 포함된 엘리먼트만 체크할지 여부.</ko>
+	 * @return {eg.Visible} An instance of a module itself<ko>모듈 자신의 인스턴스</ko>
+	 */
+	observe(...params) {
+		let delay = params[0];
+		let containment = params[1];
 
+		if (typeof delay !== "number") {
+			containment = delay;
+			delay = -1;
+		}
+
+		if (typeof delay === "undefined") {
+			delay = -1;
+		}
+
+		if (typeof containment === "undefined") {
+			containment = false;
+		}
+
+		if (!this._supportObserver) {
+			this._addObserveEvent(delay, containment);
+			return this;
+		}
+		if (!this._observer) {
+			const callback = entries => {
+				entries.forEach(entry => {
+					entry.target.__OBSERVE__ = containment ? entry.intersectionRatio >= 1 : entry.isIntersecting;
+				});
+				this.checkObserve(delay);
+			};
+
+			this._observer = new IntersectionObserver(callback, {
+				root: this._wrapper.nodeType === 1 ? this._wrapper : null,
+				rootMargin: `${this.options.expandSize}px`,
+				threshold: containment ? [0, 1] : [0],
+			});
+		} else {
+			this._observer.disconnect();
+		}
+		const targets = this._targets;
+		const length = targets.length;
+
+		for (let i = 0; i < length; ++i) {
+			this._observer.observe(targets[i]);
+		}
+		return this;
+	}
+	unobserve() {
+		this._observer && this._observer.disconnect();
+		if (this._observeCallback) {
+			removeEvent(this._wrapper, "scroll", this._observeCallback);
+			removeEvent(this._wrapper, "resize", this._observeCallback);
+		}
+
+		this._observer = null;
+		this._observeCallback = null;
+	}
+	refreshObserver() {
+		if (!this._observer) {
+			return;
+		}
+		this._observer.disconnect();
+		const targets = this._targets;
+		const length = targets.length;
+
+		for (let i = 0; i < length; ++i) {
+			this._observer.observe(targets[i]);
+		}
+	}
+	_addObserveEvent(delay, containment) {
+		if (this._observeCallback) {
+			return;
+		}
+		this._observeCallback = e => {
+			this._check(containment);
+			this.checkObserve(delay);
+		};
+		addEvent(this._wrapper, "scroll", this._observeCallback);
+		addEvent(this._wrapper, "resize", this._observeCallback);
+
+		this._observeCallback();
+	}
 	destroy() {
 		this.off();
+		this.unobserve();
 		this._targets = [];
 		this._wrapper = null;
 		this._timer = null;
