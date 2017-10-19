@@ -260,21 +260,22 @@ describe("iScroll", () => {
 
 		document.body.innerHTML = "";
 	});
-
 	it("should have correct number of visible item after iscroll", done => {
+		window.scrollTo(0, 250);
+		iScroll.scrollTo(0, 0);
 		visible.check();
 		visible.on("change", e => {
+			console.log(e.visible.length, e.invisible.length);
 			e.visible.should.to.have.lengthOf(3);
 			e.invisible.should.to.have.lengthOf(3);
 			e.isTrusted.should.to.be.true;
 			done();
 		});
-
 		iScroll.scrollTo(0, -100);
 
 		setTimeout(() => {
 			visible.check();
-		}, 200)
+		}, 200);
 	});
 });
 
