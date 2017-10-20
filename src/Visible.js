@@ -3,7 +3,7 @@
  * egjs-visible projects are licensed under the MIT license
  */
 import Component from "@egjs/component";
-import {$, addEvent, removeEvent} from "./utils";
+import {$, addEvent, removeEvent, getWindowRect, hasClass} from "./utils";
 
 // IE8
 // https://stackoverflow.com/questions/43216659/babel-ie8-inherit-issue-with-object-create
@@ -20,6 +20,20 @@ if (typeof Object.create !== "function") {
 		return new F();
 	};
 }
+const SUPPORT_OBSERVER = !!window.IntersectionObserver;
+const SUPPORT_ELEMENTS_BY_CLASSNAME = (() => {
+	const dummy = document.createElement("div");
+
+	if (!dummy.getElementsByClassName) {
+		return false;
+	}
+
+	const dummies = dummy.getElementsByClassName("dummy");
+
+	dummy.innerHTML = "<span class='dummy'></span>";
+	return dummies.length === 1;
+})();
+
 /* eslint-enable */
 
 /**
@@ -50,36 +64,13 @@ class Visible extends Component {
 		if (this._wrapper.nodeType && this._wrapper.nodeType === 1) {
 			this._getAreaRect = this._getWrapperRect;
 		} else {
-			this._getAreaRect = Visible._getWindowRect;
+			this._getAreaRect = getWindowRect;
 		}
 
 		this._targets = [];
 		this._timer = null;
-		this._supportObserver = !!window.IntersectionObserver;
-		this._supportElementsByClassName = (() => {
-			const dummy = document.createElement("div");
-
-			if (!dummy.getElementsByClassName) {
-				return false;
-			}
-
-			const dummies = dummy.getElementsByClassName("dummy");
-
-			dummy.innerHTML = "<span class='dummy'></span>";
-			return dummies.length === 1;
-		})();
-
 		this.refresh();
 	}
-
-	static _hasClass(el, className) {
-		if (el.classList) {
-			return el.classList.contains(className);
-		} else {
-			return new RegExp(`(^| )${className}( |$)`, "gi").test(el.className);
-		}
-	}
-
 	/**
 	 * Updates the list of elements where the visibility property is to be checked
 	 * @ko visibility 속성을 검사할 엘리먼트의 목록을 갱신한다
@@ -90,10 +81,10 @@ class Visible extends Component {
 	 * <ko>확인 대상이 영역 안에 추가되거나 삭제된 경우, 모듈내부에서 사용하는 확인 대상 목록을 이 메소드를 호출하여 갱신해야한다.<ko>
 	 */
 	refresh() {
-		if (this._supportElementsByClassName) {
+		if (SUPPORT_ELEMENTS_BY_CLASSNAME) {
 			this._targets = this._wrapper.getElementsByClassName(this.options.targetClass);
 			this.refresh = function() {
-				this.refreshObserver();
+				this._refreshObserver();
 				return this;
 			};
 		} else {
@@ -104,7 +95,7 @@ class Visible extends Component {
 				for (let i = 0; i < targets.length; i++) {
 					this._targets.push(targets[i]);
 				}
-				this.refreshObserver();
+				this._refreshObserver();
 				return this;
 			};
 		}
@@ -138,11 +129,11 @@ class Visible extends Component {
 		clearTimeout(this._timer);
 		if (delay < 0) {
 			this._check(containment);
-			this._checkObserve();
+			this._checkAfter();
 		} else {
 			this._timer = setTimeout(() => {
 				this._check(containment);
-				this._checkObserve();
+				this._checkAfter();
 				this._timer = null;
 			}, delay);
 		}
@@ -153,24 +144,12 @@ class Visible extends Component {
 		return this._wrapper.getBoundingClientRect();
 	}
 
-	static _getWindowRect() {
-		// [IE7] document.documentElement.clientHeight has always value 0 (bug)
-		return {
-			top: 0,
-			left: 0,
-			bottom: document.documentElement.clientHeight ||
-				document.body.clientHeight,
-			right: document.documentElement.clientWidth ||
-				document.body.clientWidth,
-		};
-	}
-
 	_reviseElements(...params) {
-		if (this._supportElementsByClassName) {
+		if (SUPPORT_ELEMENTS_BY_CLASSNAME) {
 			this._reviseElements = () => true;
 		} else {
 			this._reviseElements = (target, i) => {
-				if (!Visible._hasClass(target, this.options.targetClass)) {
+				if (!hasClass(target, this.options.targetClass)) {
 					target.__VISIBLE__ = null;
 					this._targets.splice(i, 1);
 					return false;
@@ -224,7 +203,7 @@ class Visible extends Component {
 					area.right < targetArea.left
 				);
 			}
-			target.__OBSERVE__ = after;
+			target.__AFTER__ = after;
 		}
 	}
 	checkObserve(delay = -1) {
@@ -233,16 +212,16 @@ class Visible extends Component {
 			this._timer = 0;
 		}
 		if (delay < 0) {
-			this._checkObserve();
+			this._checkAfter();
 		} else {
 			this._timer = setTimeout(() => {
-				this._checkObserve();
+				this._checkAfter();
 				this._timer = null;
 			}, delay);
 		}
 		return this;
 	}
-	_checkObserve() {
+	_checkAfter() {
 		const targets = this._targets;
 		const length = targets.length;
 		const visibles = [];
@@ -251,7 +230,7 @@ class Visible extends Component {
 		for (let i = 0; i < length; ++i) {
 			const target = targets[i];
 			const prev = target.__VISIBLE__;
-			const after = target.__OBSERVE__;
+			const after = target.__AFTER__;
 
 			if (prev === after) {
 				continue;
@@ -285,66 +264,57 @@ class Visible extends Component {
 	/**
 	 * Observe whether the visible of the target elements has changed. It trigger that change event on a component.
 	 * @ko 대상 엘리먼트의 가시성이 변경됐는지 관찰한다. change 이벤트를 발생한다.
-	 * @param {Number} [delay=-1] Delay time. It delay that change event trigger.<ko>지연시간. change 이벤트 발생을 지연한다.</ko>
-	 * @param {Boolean} [containment=false] Whether to check only elements that are completely contained within the reference area.<ko>기준 영역 안에 완전히 포함된 엘리먼트만 체크할지 여부.</ko>
+	 * @param {Object} [options={}]  Options to observe the target elements. <ko>대상 엘리먼트를 관찰하기 위한 옵션들.</ko>
+	 * @param {Number} [options.delay=-1] Delay time. It delay that change event trigger.<ko>지연시간. change 이벤트 발생을 지연한다.</ko>
+	 * @param {Boolean} [options.containment=false] Whether to check only elements that are completely contained within the reference area.<ko>기준 영역 안에 완전히 포함된 엘리먼트만 체크할지 여부.</ko>
 	 * @return {eg.Visible} An instance of a module itself<ko>모듈 자신의 인스턴스</ko>
 	 */
-	observe(...params) {
-		let delay = params[0];
-		let containment = params[1];
-
-		if (typeof delay !== "number") {
-			containment = delay;
-			delay = -1;
-		}
-
-		if (typeof delay === "undefined") {
-			delay = -1;
-		}
-
-		if (typeof containment === "undefined") {
-			containment = false;
-		}
-
-		if (!this._supportObserver) {
-			this._addObserveEvent(delay, containment);
+	observe(options = {}) {
+		if (!SUPPORT_OBSERVER) {
+			this._addObserveEvent(options);
 			return this;
 		}
-		if (!this._observer) {
-			const callback = entries => {
-				entries.forEach(entry => {
-					entry.target.__OBSERVE__ = containment ? entry.intersectionRatio >= 1 : entry.isIntersecting;
-				});
-				this.checkObserve(delay);
-			};
+		const delay = typeof options.delay === "undefined" ? -1 : options.delay;
+		const containment = !!options.containment;
 
-			this._observer = new IntersectionObserver(callback, {
-				root: this._wrapper.nodeType === 1 ? this._wrapper : null,
-				rootMargin: `${this.options.expandSize}px`,
-				threshold: containment ? [0, 1] : [0],
+		this._observeCallback = entries => {
+			entries.forEach(entry => {
+				entry.target.__AFTER__ = containment ? entry.intersectionRatio >= 1 : entry.isIntersecting;
 			});
-		} else {
-			this._observer.disconnect();
+			this._checkAfter(delay);
+		};
+		if (this._observer) {
+			this.unobserve();
 		}
+		this._observer = new IntersectionObserver(this._observeCallback, {
+			root: this._wrapper.nodeType === 1 ? this._wrapper : null,
+			rootMargin: `${this.options.expandSize}px`,
+			threshold: containment ? [0, 1] : [0],
+		});
+		const observer = this._observer;
 		const targets = this._targets;
 		const length = targets.length;
 
 		for (let i = 0; i < length; ++i) {
-			this._observer.observe(targets[i]);
+			observer.observe(targets[i]);
 		}
 		return this;
 	}
 	unobserve() {
-		this._observer && this._observer.disconnect();
-		if (this._observeCallback) {
+		if (!this._observeCallback) {
+			return this;
+		}
+		if (SUPPORT_OBSERVER) {
+			this._observer && this._observer.disconnect();
+		} else {
 			removeEvent(this._wrapper, "scroll", this._observeCallback);
 			removeEvent(this._wrapper, "resize", this._observeCallback);
 		}
-
 		this._observer = null;
 		this._observeCallback = null;
+		return this;
 	}
-	refreshObserver() {
+	_refreshObserver() {
 		if (!this._observer) {
 			return;
 		}
@@ -356,10 +326,13 @@ class Visible extends Component {
 			this._observer.observe(targets[i]);
 		}
 	}
-	_addObserveEvent(delay, containment) {
+	_addObserveEvent(options = {}) {
 		if (this._observeCallback) {
 			return;
 		}
+		const delay = typeof options.delay === "undefined" ? -1 : options.delay;
+		const containment = !!options.containment;
+
 		this._observeCallback = e => {
 			this._check(containment);
 			this.checkObserve(delay);

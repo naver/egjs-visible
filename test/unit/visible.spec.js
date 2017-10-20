@@ -129,9 +129,10 @@ describe("visible observe", () => {
 				e.isTrusted.should.to.be.true;
 				done();
 			});
-			setTimeout(e => {
-				visible.observe();
-			});
+			
+			visible.observe();
+			expect(visible._observeCallback).to.be.ok;
+		
 		});
 		it("should have correct number of visible item with delay", done => {
 			let visibleItemLength = Math.ceil(windowInnerHeight / itemOffsetHeight);
@@ -141,7 +142,7 @@ describe("visible observe", () => {
 			if (windowInnerHeight % itemOffsetHeight === 0) {
 				visibleItemLength++;
 			}
-			visible.observe(50);
+			visible.observe({delay: 50});
 			visibles.should.have.lengthOf(0);
 			invisibles.should.have.lengthOf(0);
 
@@ -168,7 +169,7 @@ describe("visible observe", () => {
 				done();
 			});
 			setTimeout(e => {
-				visible.observe(true);
+				visible.observe({containment: true});
 			});
 		});
 		it("should have correct number of visible item with containment2", done => {
@@ -183,7 +184,7 @@ describe("visible observe", () => {
 			});
 			document.querySelector("#contents").scrollTop = 10;
 			setTimeout(e => {
-				visible.observe(true);
+				visible.observe({containment: true});
 			});
 		});
 		it("should have correct number of visible item with expanded size", done => {
@@ -256,7 +257,7 @@ describe("visible observe#event", () => {
 				done();
 			});
 			setTimeout(e => {
-				visible._addObserveEvent(-1, false);
+				visible._addObserveEvent();
 			})
 		});
 		it("should have correct number of visible item with delay", done => {
@@ -267,7 +268,7 @@ describe("visible observe#event", () => {
 			if (windowInnerHeight % itemOffsetHeight === 0) {
 				visibleItemLength++;
 			}
-			visible._addObserveEvent(50, false);
+			visible._addObserveEvent({delay: 50});
 			visibles.should.have.lengthOf(0);
 			invisibles.should.have.lengthOf(0);
 
@@ -294,7 +295,7 @@ describe("visible observe#event", () => {
 				done();
 			});
 			setTimeout(e => {
-				visible._addObserveEvent(-1, true);
+				visible._addObserveEvent({containment: true});
 			});
 		});
 		it("should have correct number of visible item with containment2", done => {
@@ -309,7 +310,7 @@ describe("visible observe#event", () => {
 			});
 			document.querySelector("#contents").scrollTop = 10;
 			setTimeout(e => {
-				visible._addObserveEvent(-1, true);
+				visible._addObserveEvent({ containment: true });
 			});
 		});
 		it("should have correct number of visible item with expanded size", done => {
@@ -327,13 +328,13 @@ describe("visible observe#event", () => {
 				done();
 			});
 
-			visible._addObserveEvent(-1, false);
+			visible._addObserveEvent();
 		});
 
 		it("should have correct number of visible item when scroll", done => {
 			let visibleItems, invisibleItems;
 
-			visible._addObserveEvent(-1, false);
+			visible._addObserveEvent();
 
 			visible.on("change", e => {
 				e.visible.should.have.length.above(0);
