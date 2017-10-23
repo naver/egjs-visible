@@ -35,7 +35,7 @@ describe("visible", () => {
 
 			visible.on("change", e => {
 				e.visible.should.have.lengthOf(visibleItemLength);
-				e.invisible.should.have.lengthOf(0);
+				e.invisible.should.have.lengthOf(100 - visibleItemLength);
 				done();
 			});
 
@@ -53,7 +53,7 @@ describe("visible", () => {
 
 			visible.on("change", e => {
 				e.visible.should.have.lengthOf(visibleItemLength);
-				e.invisible.should.have.lengthOf(0);
+				e.invisible.should.have.lengthOf(100 - visibleItemLength);
 				done();
 			});
 
@@ -96,6 +96,259 @@ describe("visible", () => {
 	});
 });
 
+describe("visible observe", () => {
+	let visible,
+		windowInnerHeight,
+		itemOffsetHeight;
+
+	beforeEach(() => {
+		document.body.innerHTML = __html__["test/unit/observe.tmpl.html"];
+		windowInnerHeight = getWindowInnerHeight();
+		itemOffsetHeight = document.getElementsByClassName("check_visible").item(0).offsetHeight;
+		visible = new Visible(document.querySelector("#contents"));
+		window.scrollTo(0, 0);
+	});
+
+	afterEach(() => {
+		visible.destroy();
+		visible = null;
+
+		document.body.innerHTML = "";
+	});
+
+	describe("#check", () => {
+		it("should have correct number of visible item", done => {
+			 let visibleItemLength = Math.ceil(windowInnerHeight / itemOffsetHeight);
+			if (windowInnerHeight % itemOffsetHeight === 0) {
+				visibleItemLength++;
+			}
+
+			visible.on("change", e => {
+				e.visible.should.have.lengthOf(visibleItemLength);
+				e.invisible.should.have.lengthOf(100 - visibleItemLength);
+				e.isTrusted.should.to.be.true;
+				done();
+			});
+			
+			visible.observe();
+			expect(visible._observeCallback).to.be.ok;
+		
+		});
+		it("should have correct number of visible item with delay", done => {
+			let visibleItemLength = Math.ceil(windowInnerHeight / itemOffsetHeight);
+			let visibles = [];
+			let invisibles = [];
+
+			if (windowInnerHeight % itemOffsetHeight === 0) {
+				visibleItemLength++;
+			}
+			visible.observe({delay: 50});
+			visibles.should.have.lengthOf(0);
+			invisibles.should.have.lengthOf(0);
+
+			visible.on("change", e => {
+				visibles = e.visible;
+				invisibles = e.invisible;
+
+				e.visible.should.have.lengthOf(visibleItemLength);
+				e.invisible.should.have.lengthOf(100 - visibleItemLength);
+				done();
+			});
+			setTimeout(e => {
+				visibles.should.have.lengthOf(visibleItemLength);
+				invisibles.should.have.lengthOf(100 - visibleItemLength);
+			}, 200);
+		});
+		it("should have correct number of visible item with containment", done => {
+			let visibleItemLength = Math.ceil(windowInnerHeight / itemOffsetHeight);
+			
+			
+			visible.on("change", e => {
+				e.visible.should.have.lengthOf(visibleItemLength);
+				e.invisible.should.have.lengthOf(100 - visibleItemLength);
+				done();
+			});
+			setTimeout(e => {
+				visible.observe({containment: true});
+			});
+		});
+		it("should have correct number of visible item with containment2", done => {
+			let visibleItemLength = Math.ceil(windowInnerHeight / itemOffsetHeight);
+
+			visibleItemLength--;
+
+			visible.on("change", e => {
+				e.visible.should.have.lengthOf(visibleItemLength);
+				e.invisible.should.have.lengthOf(100 - visibleItemLength);
+				done();
+			});
+			document.querySelector("#contents").scrollTop = 10;
+			setTimeout(e => {
+				visible.observe({containment: true});
+			});
+		});
+		it("should have correct number of visible item with expanded size", done => {
+			let visibleItemLength = Math.ceil((windowInnerHeight + (2 * itemOffsetHeight)) / itemOffsetHeight);
+
+			if (windowInnerHeight % itemOffsetHeight === 0) {
+				visibleItemLength++;
+			}
+
+			visible.options.expandSize = itemOffsetHeight * 2;
+
+			visible.on("change", e => {
+				e.visible.should.have.lengthOf(visibleItemLength);
+				e.invisible.should.have.lengthOf(100 - visibleItemLength);
+				done();
+			});
+
+			visible.observe();
+		});
+
+		it("should have correct number of visible item when scroll", done => {
+			let visibleItems, invisibleItems;
+
+			visible.observe();
+			expect(visible._observer).to.be.ok;
+
+			visible.on("change", e => {
+				e.visible.should.have.length.above(0);
+				e.invisible.should.have.length.above(0);
+				e.isTrusted.should.to.be.true;
+				done();
+			});
+
+			visible._wrapper.scrollTop = 250;
+		});
+	});
+});
+
+
+describe("visible observe#event", () => {
+	let visible,
+		windowInnerHeight,
+		itemOffsetHeight;
+
+	beforeEach(() => {
+		document.body.innerHTML = __html__["test/unit/observe.tmpl.html"];
+		windowInnerHeight = getWindowInnerHeight();
+		itemOffsetHeight = document.getElementsByClassName("check_visible").item(0).offsetHeight;
+		visible = new Visible(document.querySelector("#contents"));
+		window.scrollTo(0, 0);
+	});
+
+	afterEach(() => {
+		visible.destroy();
+		visible = null;
+
+		document.body.innerHTML = "";
+	});
+
+	describe("#check", () => {
+		it("should have correct number of visible item", done => {
+			let visibleItemLength = Math.ceil(windowInnerHeight / itemOffsetHeight);
+			if (windowInnerHeight % itemOffsetHeight === 0) {
+				visibleItemLength++;
+			}
+
+			visible.on("change", e => {
+				e.visible.should.have.lengthOf(visibleItemLength);
+				e.invisible.should.have.lengthOf(100 - visibleItemLength);
+				done();
+			});
+			setTimeout(e => {
+				visible._addObserveEvent();
+			})
+		});
+		it("should have correct number of visible item with delay", done => {
+			let visibleItemLength = Math.ceil(windowInnerHeight / itemOffsetHeight);
+			let visibles = [];
+			let invisibles = [];
+
+			if (windowInnerHeight % itemOffsetHeight === 0) {
+				visibleItemLength++;
+			}
+			visible._addObserveEvent({delay: 50});
+			visibles.should.have.lengthOf(0);
+			invisibles.should.have.lengthOf(0);
+
+			visible.on("change", e => {
+				visibles = e.visible;
+				invisibles = e.invisible;
+
+				e.visible.should.have.lengthOf(visibleItemLength);
+				e.invisible.should.have.lengthOf(100 - visibleItemLength);
+				done();
+			});
+			setTimeout(e => {
+				visibles.should.have.lengthOf(visibleItemLength);
+				invisibles.should.have.lengthOf(100 - visibleItemLength);
+			}, 200);
+		});
+		it("should have correct number of visible item with containment", done => {
+			let visibleItemLength = Math.ceil(windowInnerHeight / itemOffsetHeight);
+
+
+			visible.on("change", e => {
+				e.visible.should.have.lengthOf(visibleItemLength);
+				e.invisible.should.have.lengthOf(100 - visibleItemLength);
+				done();
+			});
+			setTimeout(e => {
+				visible._addObserveEvent({containment: true});
+			});
+		});
+		it("should have correct number of visible item with containment2", done => {
+			let visibleItemLength = Math.ceil(windowInnerHeight / itemOffsetHeight);
+
+			visibleItemLength--;
+
+			visible.on("change", e => {
+				e.visible.should.have.lengthOf(visibleItemLength);
+				e.invisible.should.have.lengthOf(100 - visibleItemLength);
+				done();
+			});
+			document.querySelector("#contents").scrollTop = 10;
+			setTimeout(e => {
+				visible._addObserveEvent({ containment: true });
+			});
+		});
+		it("should have correct number of visible item with expanded size", done => {
+			let visibleItemLength = Math.ceil((windowInnerHeight + (2 * itemOffsetHeight)) / itemOffsetHeight);
+
+			if (windowInnerHeight % itemOffsetHeight === 0) {
+				visibleItemLength++;
+			}
+
+			visible.options.expandSize = itemOffsetHeight * 2;
+
+			visible.on("change", e => {
+				e.visible.should.have.lengthOf(visibleItemLength);
+				e.invisible.should.have.lengthOf(100 - visibleItemLength);
+				done();
+			});
+
+			visible._addObserveEvent();
+		});
+
+		it("should have correct number of visible item when scroll", done => {
+			let visibleItems, invisibleItems;
+
+			visible._addObserveEvent();
+
+			visible.on("change", e => {
+				e.visible.should.have.length.above(0);
+				e.invisible.should.have.length.above(0);
+				e.isTrusted.should.to.be.true;
+				done();
+			});
+
+			visible._wrapper.scrollTop = 250;
+
+		});
+	});
+});
+
 describe("iScroll", () => {
 	let visible,
 		iScroll;
@@ -115,22 +368,21 @@ describe("iScroll", () => {
 
 		document.body.innerHTML = "";
 	});
-
 	it("should have correct number of visible item after iscroll", done => {
+		window.scrollTo(0, 250);
+		iScroll.scrollTo(0, 0);
 		visible.check();
-
 		visible.on("change", e => {
 			e.visible.should.to.have.lengthOf(3);
 			e.invisible.should.to.have.lengthOf(3);
 			e.isTrusted.should.to.be.true;
 			done();
 		});
-
 		iScroll.scrollTo(0, -100);
 
 		setTimeout(() => {
 			visible.check();
-		}, 200)
+		}, 200);
 	});
 });
 
