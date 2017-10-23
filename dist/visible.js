@@ -5,7 +5,7 @@
  * @egjs/visible JavaScript library
  * 
  * 
- * @version 2.1.0-rc
+ * @version 2.1.0
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -505,7 +505,7 @@ var Visible = function (_Component) {
 	return Visible;
 }(_component2["default"]);
 
-Visible.VERSION = "2.1.0-rc";
+Visible.VERSION = "2.1.0";
 exports["default"] = Visible;
 module.exports = exports["default"];
 
