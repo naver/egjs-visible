@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Source: src/utils.js | egjs::visible - API</title>
+    
+    <meta name="description" content="A class that checks if an element is visible in the base element or viewport." />
+    
+    
+    
+    <meta property="og:title" content=""/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content=""/>
+    
+    <meta property="og:url" content=""/>
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <script src="scripts/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <link rel="canonical" href="http://naver.github.io/egjs-visible/release/latest/doc/"/>
+    
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/jaguar.css">
+    
+    
+    <script>
+    var config = {"monospaceLinks":true,"cleverLinks":true,"default":{"outputSourceFiles":true},"applicationName":"eg.Visible","disqus":"egjs","googleAnalytics":"UA-70842526-13","openGraph":{"title":"","type":"website","image":"","site_name":"","url":""},"meta":{"title":"egjs::visible - API","description":"A class that checks if an element is visible in the base element or viewport.","keyword":""},"linenums":true,"link":{"canonical":"http://naver.github.io/egjs-visible/release/latest/doc/"}};
+    </script>
+    
+
+    
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', config.googleAnalytics]);
+      _gaq.push(['_trackPageview']);
+    
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    
+</head>
+<body>
+<div id="wrap" class="clearfix">
+    
+<div class="navigation">
+    <h3 class="applicationName">
+        <a href="//naver.github.io/egjs/"><img style="width:40px; height:20px;" src="img/type_white.svg"/></a>
+
+        <!-- Homepage link (prefer link.home than applicationName) -->
+        
+        <a href="//naver.github.io/egjs-visible/">Visible</a>
+        
+    </h3>
+
+    <div class="search">
+        <input id="search" type="text" class="form-control input-sm" placeholder="Search Documentations">
+    </div>
+    <ul class="list">
+        <li class="item">
+            <span class="title">
+                <a href="index.html">README</a>
+            </span>
+        </li>
+    
+        <!-- Non Grouping Version -->
+        
+            
+
+        
+            
+
+<li class="item" data-name="eg.Visible">
+    <span class="title">
+        <a href="eg.Visible.html">eg.Visible</a>
+        
+    </span>
+    <ul class="members itemMembers expends">
+    
+    </ul>
+    <ul class="typedefs itemMembers expends">
+    
+    </ul>
+    <ul class="methods itemMembers expends">
+    
+    <span class="subtitle">Methods</span>
+    
+        <li data-name="eg.Visible#check"><a href="eg.Visible.html#check">check</a></li>
+    
+        <li data-name="eg.Visible#hasOn"><a href="eg.Visible.html#hasOn">hasOn</a> <img src="img/i.png" width="14" title="inherited" alt="inherited"></li>
+    
+        <li data-name="eg.Visible#observe"><a href="eg.Visible.html#observe">observe</a></li>
+    
+        <li data-name="eg.Visible#off"><a href="eg.Visible.html#off">off</a> <img src="img/i.png" width="14" title="inherited" alt="inherited"></li>
+    
+        <li data-name="eg.Visible#on"><a href="eg.Visible.html#on">on</a> <img src="img/i.png" width="14" title="inherited" alt="inherited"></li>
+    
+        <li data-name="eg.Visible#once"><a href="eg.Visible.html#once">once</a> <img src="img/i.png" width="14" title="inherited" alt="inherited"></li>
+    
+        <li data-name="eg.Visible#refresh"><a href="eg.Visible.html#refresh">refresh</a></li>
+    
+        <li data-name="eg.Visible#trigger"><a href="eg.Visible.html#trigger">trigger</a> <img src="img/i.png" width="14" title="inherited" alt="inherited"></li>
+    
+    </ul>
+    <ul class="events itemMembers expends">
+    
+    <span class="subtitle">Events</span>
+    
+        <li data-name="eg.Visible#event:change"><a href="eg.Visible.html#event:change">change</a></li>
+    
+    </ul>
+
+    
+</li>
+
+        
+    
+    </ul>
+</div>
+
+    <div class="main">
+        <h1 class="page-title" data-filename="src_utils.js.html">Source: src/utils.js</h1>
+        
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
+const SUPPORT_ADDEVENTLISTENER = !!("addEventListener" in document);
+const SUPPORT_PASSIVE = (() => {
+	let supportsPassiveOption = false;
+
+	try {
+		if (SUPPORT_ADDEVENTLISTENER &amp;&amp; Object.defineProperty) {
+			document.addEventListener("test", null, Object.defineProperty({},
+				"passive", {
+					get() {
+						supportsPassiveOption = true;
+					},
+				}));
+		}
+	} catch (e) { }
+	return supportsPassiveOption;
+})();
+
+export function toArray(nodes) {
+	// SCRIPT5014 in IE8
+	const array = [];
+
+	if (nodes) {
+		for (let i = 0, len = nodes.length; i &lt; len; i++) {
+			array.push(nodes[i]);
+		}
+	}
+	return array;
+}
+
+/**
+ * Select or create element
+ * @param {String|HTMLElement|jQuery} param
+ *  when string given is as HTML tag, then create element
+ *  otherwise it returns selected elements
+ * @param {Boolean} multi
+ * @returns {HTMLElement|HTMLElement[]|undefined}
+ */
+export function $(param, multi = false) {
+	let el;
+
+	if (param === undefined) {
+		return undefined;
+	}
+
+	if (typeof param === "string") { // String (HTML, Selector)
+		// check if string is HTML tag format
+		const match = param.match(/^&lt;([a-z]+)\s*([^>]*)>/);
+
+		// creating element
+		if (match) { // HTML
+			const dummy = document.createElement("div");
+
+			dummy.innerHTML = param;
+			el = toArray(dummy.childNodes);
+		} else { // Selector
+			el = toArray(document.querySelectorAll(param));
+		}
+		if (!multi) {
+			el = el.length >= 1 ? el[0] : undefined;
+		}
+	} else if (param === window) { // window
+		el = param;
+	} else if (param.nodeName &amp;&amp;
+		(param.nodeType === 1 || param.nodeType === 9)) { // HTMLElement, Document
+		el = param;
+	} else if (("jQuery" in window &amp;&amp; param instanceof jQuery) ||
+		param.constructor.prototype.jquery) { // jQuery
+		el = multi ? param.toArray() : param.get(0);
+	} else if (Array.isArray(param)) {
+		el = param.map(v => $(v));
+		if (!multi) {
+			el = el.length >= 1 ? el[0] : undefined;
+		}
+	}
+	return el;
+}
+export function getWindowRect() {
+	// [IE7] document.documentElement.clientHeight has always value 0 (bug)
+	return {
+		top: 0,
+		left: 0,
+		bottom: document.documentElement.clientHeight ||
+			document.body.clientHeight,
+		right: document.documentElement.clientWidth ||
+			document.body.clientWidth,
+	};
+}
+export function hasClass(el, className) {
+	if (el.classList) {
+		return el.classList.contains(className);
+	} else {
+		return new RegExp(`(^| )${className}( |$)`, "gi").test(el.className);
+	}
+}
+export function addEvent(element, type, handler, eventListenerOptions) {
+	if (SUPPORT_ADDEVENTLISTENER) {
+		let options = eventListenerOptions || false;
+
+		if (typeof eventListenerOptions === "object") {
+			options = SUPPORT_PASSIVE ? eventListenerOptions : false;
+		}
+		element.addEventListener(type, handler, options);
+	} else if (element.attachEvent) {
+		element.attachEvent(`on${type}`, handler);
+	} else {
+		element[`on${type}`] = handler;
+	}
+}
+export function removeEvent(element, type, handler) {
+	if (element.removeEventListener) {
+		element.removeEventListener(type, handler, false);
+	} else if (element.detachEvent) {
+		element.detachEvent(`on${type}`, handler);
+	} else {
+		element[`on${type}`] = null;
+	}
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+
+
+        
+        <!-- disqus code -->
+        <div id="disqus_thread"></div>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="//disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        <!-- // disqus code -->
+        
+
+        <footer>
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Oct 23 2017 16:14:00 GMT+0900 (KST)
+        </footer>
+    </div>
+</div>
+<script>prettyPrint();</script>
+<script src="scripts/main.js"></script>
+</body>
+</html>
