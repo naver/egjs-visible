@@ -80,9 +80,11 @@ export function getWindowRect() {
 	return {
 		top: 0,
 		left: 0,
-		bottom: document.documentElement.clientHeight ||
+		bottom: window.innerHeight ||
+			document.documentElement.clientHeight ||
 			document.body.clientHeight,
-		right: document.documentElement.clientWidth ||
+		right: window.innerWidth ||
+			document.documentElement.clientWidth ||
 			document.body.clientWidth,
 	};
 }
