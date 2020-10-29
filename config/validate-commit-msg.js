@@ -25,8 +25,8 @@ var TYPES = {
   style: true,
   refactor: true,
   test: true,
-	chore: true,
-	demo: true
+  chore: true,
+  demo: true
 };
 
 var error = function() {

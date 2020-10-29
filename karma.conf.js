@@ -12,7 +12,7 @@ module.exports = function(config) {
 
     client: {
       mocha: {
-        opts: "./mocha.opts" 
+        opts: "./mocha.opts"
       }
     },
 
@@ -37,13 +37,13 @@ module.exports = function(config) {
     },
 
     browsers: [],
-    
+
     reporters: ["mocha"],
     webpackMiddleware: {
         noInfo: true
     }
   };
-  
+
   karmaConfig.browsers.push(config.chrome ? "Chrome" : "ChromeHeadless");
 
   if(config.coverage) {

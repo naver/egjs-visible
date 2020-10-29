@@ -118,7 +118,7 @@ describe("visible observe", () => {
 
 	describe("#check", () => {
 		it("should have correct number of visible item", done => {
-			 let visibleItemLength = Math.ceil(windowInnerHeight / itemOffsetHeight);
+			let visibleItemLength = Math.ceil(windowInnerHeight / itemOffsetHeight);
 			if (windowInnerHeight % itemOffsetHeight === 0) {
 				visibleItemLength++;
 			}
@@ -129,10 +129,10 @@ describe("visible observe", () => {
 				e.isTrusted.should.to.be.true;
 				done();
 			});
-			
+
 			visible.observe();
 			expect(visible._observeCallback).to.be.ok;
-		
+
 		});
 		it("should have correct number of visible item with delay", done => {
 			let visibleItemLength = Math.ceil(windowInnerHeight / itemOffsetHeight);
@@ -161,8 +161,6 @@ describe("visible observe", () => {
 		});
 		it("should have correct number of visible item with containment", done => {
 			let visibleItemLength = Math.ceil(windowInnerHeight / itemOffsetHeight);
-			
-			
 			visible.on("change", e => {
 				e.visible.should.have.lengthOf(visibleItemLength);
 				e.invisible.should.have.lengthOf(100 - visibleItemLength);
@@ -354,9 +352,9 @@ describe("iScroll", () => {
 		iScroll;
 
 	beforeEach(() => {
-		document.body.innerHTML = __html__["test/unit/pre.tmpl.html"];
+		document.body.innerHTML = __html__["test/unit/fixed.tmpl.html"];
 		visible = new Visible();
-		iScroll = new IScroll("#view");
+		iScroll = new IScroll("#contents");
 	});
 
 	afterEach(() => {
@@ -369,16 +367,16 @@ describe("iScroll", () => {
 		document.body.innerHTML = "";
 	});
 	it("should have correct number of visible item after iscroll", done => {
-		window.scrollTo(0, 250);
+		window.scrollTo(0, 0);
 		iScroll.scrollTo(0, 0);
 		visible.check();
 		visible.on("change", e => {
-			e.visible.should.to.have.lengthOf(3);
-			e.invisible.should.to.have.lengthOf(3);
+			e.visible.should.to.have.lengthOf(5);
+			e.invisible.should.to.have.lengthOf(5);
 			e.isTrusted.should.to.be.true;
 			done();
 		});
-		iScroll.scrollTo(0, -100);
+		iScroll.scrollTo(0, -501);
 
 		setTimeout(() => {
 			visible.check();
