@@ -20,6 +20,7 @@ Ref #30
  - refactor: A code change that neither fixes a bug nor adds a feature
  - test: Adding missing tests. Changing tests.
  - chore: Changes to the build process or tools and libraries such as documentation generation
+ - demo: Changes related to the demo
 
 ============ See More =============
 https://github.com/naver/egjs/wiki/Commit-Log-Guidelines
