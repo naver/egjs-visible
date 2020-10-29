@@ -39,6 +39,25 @@
 ```
 
 #### JS
+You can call **observe()** to listen both **"scroll"** and **"resize"** event from the wrapper element.
+
+```js
+// Create eg.Visible instance
+var visibleView = new eg.Visible('.scroller',{
+  targetClass : "card",
+  expandSize : 0
+}).on("change", function (e) {
+  // Add change event handler
+  e.visible.forEach(el => el.classList.add("visible"));
+  e.invisible.forEach(el => el.classList.remove("visible"));
+  handler(e)
+});
+
+// Observe with options
+visibleView.observe({ delay: 100, containment: false });
+```
+
+Or you can manually check the visibility change by yourself.
 
 ```js
 // Create eg.Visible instance
