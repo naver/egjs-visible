@@ -1,6 +1,6 @@
 {
 	"name": "@egjs/visible",
-	"version": "2.1.0-snapshot",
+	"version": "2.1.1",
 	"description": "A class that checks if an element is visible in the base element or viewport.",
 	"main": "dist/visible.js",
 	"es2015": "src/Visible.js",
@@ -20,10 +20,14 @@
 		"demo:updateVersion": "echo $npm_package_version > demo/_data/version.yml",
 		"demo:setup": "cpx 'node_modules/@egjs/common-demo/**/*' 'demo/' && rm demo/package.json",
 		"coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-		"release": "node config/release.js",
+		"release": "release-helper upstream",
 		"changelog": "node ./config/changelog.js",
 		"prepush": "npm run lint",
 		"commitmsg": "node config/validate-commit-msg.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/naver/egjs-visible"
 	},
 	"author": {
 		"name": "NAVER Corp."
@@ -32,11 +36,16 @@
 		"eg": "eg"
 	},
 	"license": "MIT",
+	"homepage": "https://naver.github.io/egjs-visible/",
+	"bugs": {
+		"url": "https://github.com/naver/egjs-visible/issues"
+	},
 	"dependencies": {
 		"@egjs/component": "^2.1.0"
 	},
 	"devDependencies": {
 		"@egjs/common-demo": "github:naver/egjs#common-demo",
+		"@egjs/release-helper": "0.0.3",
 		"babel-core": "^6.26.0",
 		"babel-loader": "^7.1.2",
 		"babel-plugin-add-module-exports": "^0.2.1",
@@ -61,7 +70,7 @@
 		"iscroll": "^5.2.0",
 		"istanbul-instrumenter-loader": "^3.0.0",
 		"jquery": "^3.2.1",
-		"jsdoc": "^3.5.5",
+		"jsdoc": "^3.6.6",
 		"karma": "^1.7.1",
 		"karma-chai": "^0.1.0",
 		"karma-chrome-launcher": "^2.2.0",
