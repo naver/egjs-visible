@@ -60,7 +60,7 @@
         <div class="hero-image" style="background-image: url(//naver.github.io/egjs/img/Visible.png)">
         </div>
         <h2 class="title">
-            <span class="highlight">Visible</span><a href="https://github.com/naver/egjs-visible/releases/tag/2.1.0"><span class="version">v2.1.0</span></a>
+            <span class="highlight">Visible</span><a href="https://github.com/naver/egjs-visible/releases/tag/2.1.1"><span class="version">v2.1.1</span></a>
         </h2>
         <p class="intro">A class that checks if an element is visible in the base element or viewport.<br/>
             <span class="hashtag">#visibility</span>
@@ -92,7 +92,7 @@
 
 <h4 id="set-up-your-html">Set up your HTML</h4>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">"contents"</span><span class="nt">&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">"contents"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"check_visible"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;div&gt;</span>test1<span class="nt">&lt;/div&gt;</span>
   <span class="nt">&lt;/li&gt;</span>
@@ -112,33 +112,30 @@
     <span class="nt">&lt;div&gt;</span>test6<span class="nt">&lt;/div&gt;</span>
   <span class="nt">&lt;/li&gt;</span>
 <span class="nt">&lt;/ul&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h4 id="load-files-or-import-library">Load files or import library</h4>
 
 <h5 id="es5">ES5</h5>
-<div class="language-html highlighter-rouge"><pre class="highlight"><code>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//naver.github.io/egjs-visible/release/latest/dist/visible.pkgd.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5 id="es6">ES6+</h5>
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="nx">Visible</span> <span class="nx">from</span> <span class="s2">"@egjs/visible"</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">Visible</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@egjs/visible</span><span class="dl">"</span><span class="p">;</span>
+</code></pre></div></div>
 
 <h3 id="initialize">Initialize</h3>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// Create eg.Visible instance</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Create eg.Visible instance</span>
 <span class="kd">var</span> <span class="nx">visible</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">eg</span><span class="p">.</span><span class="nx">Visible</span><span class="p">(</span><span class="nb">document</span><span class="p">,{</span>
-    <span class="na">targetClass</span> <span class="p">:</span> <span class="s2">"card"</span><span class="p">,</span>
+    <span class="na">targetClass</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">card</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">expandSize</span> <span class="p">:</span> <span class="mi">0</span>
 <span class="p">});</span>
 
 <span class="c1">// Add change event handler</span>
-<span class="nx">visible</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">"change"</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">visible</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">"</span><span class="s2">change</span><span class="dl">"</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// e.visible;</span>
     <span class="c1">// e.invisible;</span>
 <span class="p">});</span>
@@ -146,8 +143,7 @@
 <span class="c1">// Call "check" method whenever you want to check visibility change of the elements compared with last time you call "check" method.</span>
 <span class="c1">// When you call "check" mehtod and if there is a change, "change" event will trigger.</span>
 <span class="nx">visible</span><span class="p">.</span><span class="nx">check</span><span class="p">();</span>    
-</code></pre>
-</div>
+</code></pre></div></div>
 
 			</div>
 		</div>
@@ -205,7 +201,7 @@
 
 <h4 id="html">html</h4>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"wrap"</span> <span class="na">codepen=</span><span class="s">"visible"</span><span class="nt">&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"wrap"</span> <span class="na">codepen=</span><span class="s">"visible"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"scroller"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card item"</span><span class="nt">&gt;&lt;/div&gt;</span>
     <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card item"</span><span class="nt">&gt;&lt;/div&gt;</span>
@@ -236,31 +232,47 @@
     <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card item"</span><span class="nt">&gt;&lt;/div&gt;</span>
   <span class="nt">&lt;/div&gt;</span>
 <span class="nt">&lt;/div&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h4 id="js">JS</h4>
+<p>You can call <strong>observe()</strong> to listen both <strong>“scroll”</strong> and <strong>“resize”</strong> event from the wrapper element.</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// Create eg.Visible instance</span>
-<span class="kd">var</span> <span class="nx">visibleView</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">eg</span><span class="p">.</span><span class="nx">Visible</span><span class="p">(</span><span class="s1">'.scroller'</span><span class="p">,{</span>
-  <span class="na">targetClass</span> <span class="p">:</span> <span class="s2">"card"</span><span class="p">,</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Create eg.Visible instance</span>
+<span class="kd">var</span> <span class="nx">visibleView</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">eg</span><span class="p">.</span><span class="nx">Visible</span><span class="p">(</span><span class="dl">'</span><span class="s1">.scroller</span><span class="dl">'</span><span class="p">,{</span>
+  <span class="na">targetClass</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">card</span><span class="dl">"</span><span class="p">,</span>
   <span class="na">expandSize</span> <span class="p">:</span> <span class="mi">0</span>
-<span class="p">}).</span><span class="nx">on</span><span class="p">(</span><span class="s2">"change"</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+<span class="p">}).</span><span class="nx">on</span><span class="p">(</span><span class="dl">"</span><span class="s2">change</span><span class="dl">"</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// Add change event handler</span>
-  <span class="nx">$</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">visible</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s2">"visible"</span><span class="p">);</span>
-  <span class="nx">$</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">invisible</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="s2">"visible"</span><span class="p">);</span>
+  <span class="nx">e</span><span class="p">.</span><span class="nx">visible</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">el</span> <span class="o">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="dl">"</span><span class="s2">visible</span><span class="dl">"</span><span class="p">));</span>
+  <span class="nx">e</span><span class="p">.</span><span class="nx">invisible</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">el</span> <span class="o">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="dl">"</span><span class="s2">visible</span><span class="dl">"</span><span class="p">));</span>
+  <span class="nx">handler</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span>
+<span class="p">});</span>
+
+<span class="c1">// Observe with options</span>
+<span class="nx">visibleView</span><span class="p">.</span><span class="nx">observe</span><span class="p">({</span> <span class="na">delay</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="na">containment</span><span class="p">:</span> <span class="kc">false</span> <span class="p">});</span>
+</code></pre></div></div>
+
+<p>Or you can manually check the visibility change by yourself.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Create eg.Visible instance</span>
+<span class="kd">var</span> <span class="nx">visibleView</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">eg</span><span class="p">.</span><span class="nx">Visible</span><span class="p">(</span><span class="dl">'</span><span class="s1">.scroller</span><span class="dl">'</span><span class="p">,{</span>
+  <span class="na">targetClass</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">card</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">expandSize</span> <span class="p">:</span> <span class="mi">0</span>
+<span class="p">}).</span><span class="nx">on</span><span class="p">(</span><span class="dl">"</span><span class="s2">change</span><span class="dl">"</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Add change event handler</span>
+  <span class="nx">$</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">visible</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="dl">"</span><span class="s2">visible</span><span class="dl">"</span><span class="p">);</span>
+  <span class="nx">$</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">invisible</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="dl">"</span><span class="s2">visible</span><span class="dl">"</span><span class="p">);</span>
   <span class="nx">handler</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span>
 <span class="p">});</span>
 
 <span class="c1">// Call "check" method whenever you want to check visibility change of the elements compared with last time you call "check" method.</span>
 <span class="nx">visibleView</span><span class="p">.</span><span class="nx">check</span><span class="p">();</span>    
 
-<span class="nx">$</span><span class="p">(</span><span class="s1">'.scroller'</span><span class="p">).</span><span class="nx">scroll</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">.scroller</span><span class="dl">'</span><span class="p">).</span><span class="nx">scroll</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">// When you call "check" mehtod and if there is a change, "change" event will trigger.</span>
   <span class="nx">visibleView</span><span class="p">.</span><span class="nx">check</span><span class="p">();</span>    
 <span class="p">});</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 			</div>
 		</div>
