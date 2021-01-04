@@ -431,3 +431,44 @@ describe("contaiment visible", () => {
 		}, 200);
 	});
 });
+
+describe("getVisibleElements", () => {
+	let visible,
+		windowInnerHeight,
+		itemOffsetHeight;
+
+	beforeEach(() => {
+		document.body.innerHTML = __html__["test/unit/list.tmpl.html"];
+		windowInnerHeight = getWindowInnerHeight();
+		itemOffsetHeight = document.getElementsByClassName("check_visible").item(0).offsetHeight;
+
+		visible = new Visible();
+	});
+
+	afterEach(() => {
+		visible.destroy();
+		visible = null;
+
+		document.body.innerHTML = "";
+	});
+
+	it("should have 0 visible elements on init", () => {
+		expect(visible.getVisibleElements()).to.be.empty;
+	});
+
+	it("should have same amount of visible elements as 'visible' from the change event", done => {
+		let visibleItemLength = Math.ceil(windowInnerHeight / itemOffsetHeight);
+
+		if (windowInnerHeight % itemOffsetHeight === 0) {
+			visibleItemLength++;
+		}
+
+		visible.on("change", e => {
+			expect(visible.getVisibleElements().length).to.equal(visibleItemLength);
+			expect(visible.getVisibleElements().length).to.equal(e.visible.length);
+			done();
+		});
+
+		visible.check();
+	});
+});
