@@ -140,6 +140,15 @@ class Visible extends Component {
 		return this;
 	}
 
+	/**
+	 * Get current visible elements.
+	 * @ko 현재 보이는 엘리먼트들을 반환한다.
+	 * @return {HTMLElement[]} An array of visible elements.<ko>현재 보이는 엘리먼트들의 배열</ko>
+	 */
+	getVisibleElements() {
+		return [].slice.call(this._targets).filter(el => !!el.__VISIBLE__);
+	}
+
 	_getWrapperRect() {
 		return this._wrapper.getBoundingClientRect();
 	}
