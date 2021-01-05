@@ -1,6 +1,6 @@
 {
 	"name": "@egjs/visible",
-	"version": "2.1.1-snapshot",
+	"version": "2.2.0",
 	"description": "A class that checks if an element is visible in the base element or viewport.",
 	"main": "dist/visible.js",
 	"es2015": "src/Visible.js",
