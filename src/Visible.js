@@ -146,7 +146,17 @@ class Visible extends Component {
 	 * @return {HTMLElement[]} An array of visible elements.<ko>현재 보이는 엘리먼트들의 배열</ko>
 	 */
 	getVisibleElements() {
-		return [].slice.call(this._targets).filter(el => !!el.__VISIBLE__);
+		const targets = this._targets;
+		const result = [];
+
+		for (let i = 0; i < targets.length; i++) {
+			const el = targets[i];
+
+			if (el && el.__VISIBLE__ === true) {
+				result.push(el);
+			}
+		}
+		return result;
 	}
 
 	_getWrapperRect() {
