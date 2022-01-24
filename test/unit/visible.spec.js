@@ -96,13 +96,13 @@ describe("visible", () => {
 	});
 });
 
-describe("visible observe in wrapper", () => {
+describe("visible observe in targetContainer", () => {
 	let visible;
 
 	beforeEach(() => {
-		document.body.innerHTML = __html__["test/unit/wrapper.tmpl.html"];
+		document.body.innerHTML = __html__["test/unit/targetContainer.tmpl.html"];
 		visible = new Visible(document.querySelector("#contents"), {
-			wrapperElement: document.querySelector(".wrapper"),
+			targetContainer: document.querySelector(".container"),
 		});
 		window.scrollTo(0, 0);
 	});
@@ -113,7 +113,7 @@ describe("visible observe in wrapper", () => {
 
 		document.body.innerHTML = "";
 	});
-	it("should have correct number of visible item in wrapper", done => {
+	it("should have correct number of visible item in targetContainer", done => {
 		visible.on("change", e => {
 			// total: 100, document.querySelectorAll(".wrapper").children.length: 97
 			expect(e.visible.length + e.invisible.length).to.be.equals(97);
