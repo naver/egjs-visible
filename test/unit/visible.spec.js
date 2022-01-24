@@ -96,6 +96,33 @@ describe("visible", () => {
 	});
 });
 
+describe("visible observe in wrapper", () => {
+	let visible;
+
+	beforeEach(() => {
+		document.body.innerHTML = __html__["test/unit/wrapper.tmpl.html"];
+		visible = new Visible(document.querySelector("#contents"), {
+			wrapperElement: document.querySelector(".wrapper"),
+		});
+		window.scrollTo(0, 0);
+	});
+
+	afterEach(() => {
+		visible.destroy();
+		visible = null;
+
+		document.body.innerHTML = "";
+	});
+	it("should have correct number of visible item in wrapper", done => {
+		visible.on("change", e => {
+			// total: 100, document.querySelectorAll(".wrapper").children.length: 97
+			expect(e.visible.length + e.invisible.length).to.be.equals(97);
+			done();
+		});
+
+		visible.observe();
+	});
+});
 describe("visible observe", () => {
 	let visible,
 		windowInnerHeight,
