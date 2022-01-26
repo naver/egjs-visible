@@ -48,14 +48,14 @@ class Visible extends Component {
 	/**
 	 * @param {HTMLElement|String|jQuery} [baseElement=document] A base element that detects if target elements are visible<ko>타겟 엘리먼트들이 보이는 기준 엘리먼트</ko>
 	 * @param {Object} options The option object of the Visible module<ko>Visible 모듈의 옵션 객체</ko>
-	 * @param {String} [options.targetContainer=element] A target container element that contains the target elements. (baseElement >= targetContainer > target elements) <ko>타겟 엘리먼트들을 포함하고 있는 타겟 컨테이너 엘리먼트 (baseElement >= targetContainer > target elements)</ko>
+	 * @param {String} [options.targetContainer=baseElement] A target container element that contains the target elements. (baseElement >= targetContainer > target elements) <ko>타겟 엘리먼트들을 포함하고 있는 타겟 컨테이너 엘리먼트 (baseElement >= targetContainer > target elements)</ko>
 	 * @param {String} [options.targetClass="check_visible"] The class name of the element to be checked<ko>보이는지 확인할 엘리먼트의 클래스 이름</ko>
 	 * @param {Number} [options.expandSize=0] The size of the expanded area to be checked whether an element is visible. If this value is less than zero, the size of the area is smaller than that of the base element. <ko>기준 엘리먼트의 경계를 넘어 엘리먼트가 보이는지 확인할 영역의 크기. 값이 0보다 작으면 엘리먼트가 보이는지 확인할 영역의 크기가 기준 엘리먼트보다 작아진다</ko>
 	 */
 	constructor(baseElement, options) {
 		super();
 		this.options = {
-			targetContainer: baseElement,
+			targetContainer: null,
 			targetClass: "check_visible",
 			expandSize: 0,
 		};
