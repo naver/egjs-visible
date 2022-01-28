@@ -96,6 +96,33 @@ describe("visible", () => {
 	});
 });
 
+describe("visible observe in targetContainer", () => {
+	let visible;
+
+	beforeEach(() => {
+		document.body.innerHTML = __html__["test/unit/targetContainer.tmpl.html"];
+		visible = new Visible(document.querySelector("#contents"), {
+			targetContainer: document.querySelector(".container"),
+		});
+		window.scrollTo(0, 0);
+	});
+
+	afterEach(() => {
+		visible.destroy();
+		visible = null;
+
+		document.body.innerHTML = "";
+	});
+	it("should have correct number of visible item in targetContainer", done => {
+		visible.on("change", e => {
+			// total: 100, document.querySelectorAll(".wrapper").children.length: 97
+			expect(e.visible.length + e.invisible.length).to.be.equals(97);
+			done();
+		});
+
+		visible.observe();
+	});
+});
 describe("visible observe", () => {
 	let visible,
 		windowInnerHeight,

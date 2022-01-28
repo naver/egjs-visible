@@ -46,22 +46,27 @@ const SUPPORT_ELEMENTS_BY_CLASSNAME = (() => {
  */
 class Visible extends Component {
 	/**
-	 * @param {HTMLElement|String|jQuery} [element=document] A base element that detects if another element is visible<ko>엘리먼트가 보이는 기준 엘리먼트</ko>
+	 * @param {HTMLElement|String|jQuery} [baseElement=document] A base element that detects if target elements are visible<ko>타겟 엘리먼트들이 보이는 기준 엘리먼트</ko>
 	 * @param {Object} options The option object of the Visible module<ko>Visible 모듈의 옵션 객체</ko>
+	 * @param {String} [options.targetContainer=baseElement] A target container element that contains the target elements. (baseElement >= targetContainer > target elements) <ko>타겟 엘리먼트들을 포함하고 있는 타겟 컨테이너 엘리먼트 (baseElement >= targetContainer > target elements)</ko>
 	 * @param {String} [options.targetClass="check_visible"] The class name of the element to be checked<ko>보이는지 확인할 엘리먼트의 클래스 이름</ko>
 	 * @param {Number} [options.expandSize=0] The size of the expanded area to be checked whether an element is visible. If this value is less than zero, the size of the area is smaller than that of the base element. <ko>기준 엘리먼트의 경계를 넘어 엘리먼트가 보이는지 확인할 영역의 크기. 값이 0보다 작으면 엘리먼트가 보이는지 확인할 영역의 크기가 기준 엘리먼트보다 작아진다</ko>
 	 */
-	constructor(element, options) {
+	constructor(baseElement, options) {
 		super();
 		this.options = {
+			targetContainer: null,
 			targetClass: "check_visible",
 			expandSize: 0,
 		};
 		Object.assign(this.options, options);
-		this._wrapper = $(element) || document;
+		const targetContainer = this.options.targetContainer || baseElement;
 
-		// this._wrapper is Element, or may be Window
-		if (this._wrapper.nodeType && this._wrapper.nodeType === 1) {
+		this._base = $(baseElement) || document;
+		this._wrapper = $(targetContainer) || this._base;
+
+		// this._base is Element, or may be Window
+		if (this._base.nodeType && this._base.nodeType === 1) {
 			this._getAreaRect = this._getWrapperRect;
 		} else {
 			this._getAreaRect = getWindowRect;
@@ -81,15 +86,17 @@ class Visible extends Component {
 	 * <ko>확인 대상이 영역 안에 추가되거나 삭제된 경우, 모듈내부에서 사용하는 확인 대상 목록을 이 메소드를 호출하여 갱신해야한다.<ko>
 	 */
 	refresh() {
+		const targetClass = this.options.targetClass;
+
 		if (SUPPORT_ELEMENTS_BY_CLASSNAME) {
-			this._targets = this._wrapper.getElementsByClassName(this.options.targetClass);
+			this._targets = this._wrapper.getElementsByClassName(targetClass);
 			this.refresh = function() {
 				this._refreshObserver();
 				return this;
 			};
 		} else {
 			this.refresh = function() {
-				const targets = this._wrapper.querySelectorAll(`.${this.options.targetClass}`);
+				const targets = this._wrapper.querySelectorAll(`.${targetClass}`);
 
 				this._targets = [];
 				for (let i = 0; i < targets.length; i++) {
@@ -160,7 +167,7 @@ class Visible extends Component {
 	}
 
 	_getWrapperRect() {
-		return this._wrapper.getBoundingClientRect();
+		return this._base.getBoundingClientRect();
 	}
 
 	_reviseElements(...params) {
@@ -306,7 +313,7 @@ class Visible extends Component {
 			this.unobserve();
 		}
 		this._observer = new IntersectionObserver(this._observeCallback, {
-			root: this._wrapper.nodeType === 1 ? this._wrapper : null,
+			root: this._base.nodeType === 1 ? this._base : null,
 			rootMargin: `${this.options.expandSize}px`,
 			threshold: containment ? [0, 1] : [0],
 		});
@@ -326,8 +333,8 @@ class Visible extends Component {
 		if (SUPPORT_OBSERVER) {
 			this._observer && this._observer.disconnect();
 		} else {
-			removeEvent(this._wrapper, "scroll", this._observeCallback);
-			removeEvent(this._wrapper, "resize", this._observeCallback);
+			removeEvent(this._base, "scroll", this._observeCallback);
+			removeEvent(this._base, "resize", this._observeCallback);
 		}
 		this._observer = null;
 		this._observeCallback = null;
@@ -356,8 +363,8 @@ class Visible extends Component {
 			this._check(containment);
 			this.checkObserve(delay);
 		};
-		addEvent(this._wrapper, "scroll", this._observeCallback);
-		addEvent(this._wrapper, "resize", this._observeCallback);
+		addEvent(this._base, "scroll", this._observeCallback);
+		addEvent(this._base, "resize", this._observeCallback);
 
 		this._observeCallback();
 	}
@@ -365,7 +372,7 @@ class Visible extends Component {
 		this.off();
 		this.unobserve();
 		this._targets = [];
-		this._wrapper = null;
+		this._base = null;
 		this._timer = null;
 	}
 }
