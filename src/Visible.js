@@ -49,7 +49,8 @@ class Visible extends Component {
 	 * @param {HTMLElement|String|jQuery} [baseElement=document] A base element that detects if target elements are visible<ko>타겟 엘리먼트들이 보이는 기준 엘리먼트</ko>
 	 * @param {Object} options The option object of the Visible module<ko>Visible 모듈의 옵션 객체</ko>
 	 * @param {String} [options.targetContainer=baseElement] A target container element that contains the target elements. (baseElement >= targetContainer > target elements) <ko>타겟 엘리먼트들을 포함하고 있는 타겟 컨테이너 엘리먼트 (baseElement >= targetContainer > target elements)</ko>
-	 * @param {String} [options.targetClass="check_visible"] The class name of the element to be checked<ko>보이는지 확인할 엘리먼트의 클래스 이름</ko>
+	 * @param {String} [options.targetClass="check_visible"] The class name of the element to be checked. It has slightly better performance than the targetSelector option.<ko>보이는지 확인할 엘리먼트의 클래스 이름. targetSelector 옵션보다 성능이 조금 좋다.</ko>
+	 * @param {String} [options.targetSelector=""] The selector of the element to be checked. You can use targetClass instead.<ko>보이는지 확인할 엘리먼트의 셀렉터. targetClass 대신 사용할 수 있다.</ko>
 	 * @param {Number} [options.expandSize=0] The size of the expanded area to be checked whether an element is visible. If this value is less than zero, the size of the area is smaller than that of the base element. <ko>기준 엘리먼트의 경계를 넘어 엘리먼트가 보이는지 확인할 영역의 크기. 값이 0보다 작으면 엘리먼트가 보이는지 확인할 영역의 크기가 기준 엘리먼트보다 작아진다</ko>
 	 */
 	constructor(baseElement, options) {
@@ -57,6 +58,7 @@ class Visible extends Component {
 		this.options = {
 			targetContainer: null,
 			targetClass: "check_visible",
+			targetSelector: "",
 			expandSize: 0,
 		};
 		Object.assign(this.options, options);
@@ -86,9 +88,11 @@ class Visible extends Component {
 	 * <ko>확인 대상이 영역 안에 추가되거나 삭제된 경우, 모듈내부에서 사용하는 확인 대상 목록을 이 메소드를 호출하여 갱신해야한다.<ko>
 	 */
 	refresh() {
-		const targetClass = this.options.targetClass;
+		const options = this.options;
+		const targetClass = options.targetClass;
+		const targetSelector = options.targetSelector;
 
-		if (SUPPORT_ELEMENTS_BY_CLASSNAME) {
+		if (SUPPORT_ELEMENTS_BY_CLASSNAME && !targetSelector) {
 			this._targets = this._wrapper.getElementsByClassName(targetClass);
 			this.refresh = function() {
 				this._refreshObserver();
@@ -96,9 +100,11 @@ class Visible extends Component {
 			};
 		} else {
 			this.refresh = function() {
-				const targets = this._wrapper.querySelectorAll(`.${targetClass}`);
+				const selector = targetSelector || `.${targetClass}`;
+				const targets = this._wrapper.querySelectorAll(selector);
 
 				this._targets = [];
+
 				for (let i = 0; i < targets.length; i++) {
 					this._targets.push(targets[i]);
 				}
@@ -171,11 +177,13 @@ class Visible extends Component {
 	}
 
 	_reviseElements(...params) {
-		if (SUPPORT_ELEMENTS_BY_CLASSNAME) {
+		const options = this.options;
+
+		if (SUPPORT_ELEMENTS_BY_CLASSNAME && !options.targetSelector) {
 			this._reviseElements = () => true;
 		} else {
 			this._reviseElements = (target, i) => {
-				if (!hasClass(target, this.options.targetClass)) {
+				if (!hasClass(target, options.targetClass)) {
 					target.__VISIBLE__ = null;
 					this._targets.splice(i, 1);
 					return false;
