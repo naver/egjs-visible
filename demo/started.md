@@ -49,7 +49,9 @@ import Visible from "@egjs/visible";
 ```javascript
 // Create eg.Visible instance
 var visible = new eg.Visible(document,{
-    targetClass : "card",
+    // You can find targets through the targetSelector or targetClass option.
+    targetSelector: ".check_visible",
+    // or targetClass : "check_visible",
     expandSize : 0
 });
 

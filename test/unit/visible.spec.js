@@ -93,6 +93,22 @@ describe("visible", () => {
 
 			visible._targets.should.to.have.lengthOf(targetLength + 3);
 		});
+		it("should have length that is not updated when element appended with targetSelector", () => {
+			visible.destroy();
+			visible = new Visible(document, {
+				targetSelector: ".check_visible",
+			});
+
+			const targetLength = visible._targets.length;
+
+			document.getElementById("contents").insertAdjacentHTML(
+				"beforeend",
+				`<li class="list check_visible">APPEND</li>
+				<li class="list check_visible">APPEND</li>
+				<li class="list check_visible">APPEND</li>`);
+
+			visible._targets.should.to.have.lengthOf(targetLength);
+		});
 	});
 });
 

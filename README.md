@@ -44,7 +44,52 @@ The following command shows how to install egjs-visible using npm.
 $ npm install @egjs/visible
 ```
 
+## How to use
+Set up your HTML
+```html
+<ul id="contents">
+  <li class="check_visible">
+    <div>test1</div>
+  </li>
+  <li class="check_visible">
+    <div>test2</div>
+  </li>
+  <li class="check_visible">
+    <div>test3</div>
+  </li>
+  <li class="check_visible">
+    <div>test4</div>
+  </li>
+  <li class="check_visible">
+    <div>test5</div>
+  </li>
+  <li class="check_visible">
+    <div>test6</div>
+  </li>
+</ul>
+```
+```js
+// <script src="//naver.github.io/egjs-visible/release/latest/dist/visible.pkgd.min.js"></script>
+import Visible from "@egjs/visible";
 
+// Create eg.Visible instance
+var visible = new eg.Visible(document,{
+    // You can find targets through the targetSelector or targetClass option.
+    targetSelector : ".check_visible",
+    // or targetClass: "check_visible",
+    expandSize : 0
+});
+
+// Add change event handler
+visible.on("change", function (e) {
+    // e.visible;
+    // e.invisible;
+});
+
+// Call "check" method whenever you want to check visibility change of the elements compared with last time you call "check" method.
+// When you call "check" mehtod and if there is a change, "change" event will trigger.
+visible.check();
+```
 ## Supported Browsers
 The following are the supported browsers.
 
