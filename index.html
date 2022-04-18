@@ -60,7 +60,7 @@
         <div class="hero-image" style="background-image: url(//naver.github.io/egjs/img/Visible.png)">
         </div>
         <h2 class="title">
-            <span class="highlight">Visible</span><a href="https://github.com/naver/egjs-visible/releases/tag/2.3.0"><span class="version">v2.3.0</span></a>
+            <span class="highlight">Visible</span><a href="https://github.com/naver/egjs-visible/releases/tag/2.4.0"><span class="version">v2.4.0</span></a>
         </h2>
         <p class="intro">A class that checks if an element is visible in the base element or viewport.<br/>
             <span class="hashtag">#visibility</span>
@@ -130,7 +130,9 @@
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Create eg.Visible instance</span>
 <span class="kd">var</span> <span class="nx">visible</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">eg</span><span class="p">.</span><span class="nx">Visible</span><span class="p">(</span><span class="nb">document</span><span class="p">,{</span>
-    <span class="na">targetClass</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">card</span><span class="dl">"</span><span class="p">,</span>
+    <span class="c1">// You can find targets through the targetSelector or targetClass option.</span>
+    <span class="na">targetSelector</span><span class="p">:</span> <span class="dl">"</span><span class="s2">.check_visible</span><span class="dl">"</span><span class="p">,</span>
+    <span class="c1">// or targetClass : "check_visible",</span>
     <span class="na">expandSize</span> <span class="p">:</span> <span class="mi">0</span>
 <span class="p">});</span>
 
